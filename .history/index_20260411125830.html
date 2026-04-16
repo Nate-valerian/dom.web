@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+  <meta name="description" content="Tea Home - space of harmony, relaxation and tea ceremonies for the soul">
+  <title>Tea Home - Space of Harmony</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Lottie Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    /* =========================================
+       VARIABLES & RESET
+       ========================================= */
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #151515;
+      --bg-card-hover: #1f1f1f;
+      --gold-primary: #D4AF37;
+      --gold-light: #F4E4BA;
+      --gold-dark: #997b18;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0A0A0;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Montserrat', sans-serif;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.2);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; color: var(--gold-light); margin-bottom: 1rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+    h3 { font-size: 1.5rem; }
+    p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    a { color: var(--gold-primary); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--gold-light); }
+
+    .hidden { display: none !important; }
+    .active { display: flex !important; }
+    .gold { color: var(--gold-primary); }
+    .small { font-size: 0.9rem; color: var(--text-secondary); }
+
+    section { padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+
+    /* =========================================
+       FIXED CTA
+       ========================================= */
+    .cta-fixed {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+      color: var(--bg-primary); border: none; padding: 14px 28px;
+      font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+      border-radius: 50px; box-shadow: var(--shadow-gold); cursor: pointer;
+      transition: var(--transition); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .cta-fixed:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4); }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    .nav-toggle {
+      position: fixed; top: 20px; left: 20px; z-index: 999;
+      background: transparent; border: 1px solid var(--gold-dark); color: var(--gold-primary);
+      width: 44px; height: 44px; border-radius: 8px; font-size: 1.5rem; cursor: pointer;
+      transition: var(--transition); display: flex; align-items: center; justify-content: center;
+    }
+    .nav-toggle:hover { background: rgba(212, 175, 55, 0.1); }
+
+    .side-nav {
+      position: fixed; top: 0; left: 0; width: 80%; max-width: 320px; height: 100vh;
+      background: var(--bg-secondary); border-right: 1px solid var(--gold-dark); z-index: 998;
+      transform: translateX(-100%); transition: transform 0.4s ease; padding: 80px 30px 30px;
+    }
+    .side-nav.open { transform: translateX(0); }
+    .nav-close {
+      position: absolute; top: 20px; right: 20px; background: transparent;
+      border: none; color: var(--gold-light); font-size: 2rem; cursor: pointer;
+    }
+    .side-nav ul { list-style: none; }
+    .side-nav li { margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 0.5rem; }
+    .side-nav a { font-size: 1.2rem; display: block; padding: 0.5rem 0; color: var(--text-primary); }
+
+    /* =========================================
+       HERO SECTION
+       ========================================= */
+    .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding-top: 4rem; }
+    .cat-container { position: relative; width: 280px; height: 280px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; }
+    .cat-lottie { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; }
+
+    .sphere {
+      width: 200px; height: 200px; background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      position: relative; z-index: 1; cursor: pointer; transition: var(--transition);
+      animation: float 4s ease-in-out infinite; border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .sphere p { font-family: var(--font-heading); font-size: 1rem; color: var(--gold-light); text-align: center; margin: 0; line-height: 1.4; }
+    .sphere:hover { transform: scale(1.05); background: radial-gradient(circle, rgba(212, 175, 55, 0.5), transparent); }
+    .hero-title { margin-top: 1rem; opacity: 0; transform: translateY(20px); }
+
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+    /* =========================================
+       ONBOARDING & QUIZ
+       ========================================= */
+    .onboarding { margin-top: 2rem; }
+    .choice-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (min-width: 768px) { .choice-cards { grid-template-columns: 1fr 1fr; } }
+
+    .choice-card {
+      background: var(--bg-secondary); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-lg);
+      padding: 2rem; text-align: left; cursor: pointer; transition: var(--transition);
+    }
+    .choice-card:hover { border-color: var(--gold-primary); background: var(--bg-card-hover); transform: translateY(-5px); }
+    .choice-card h3 { margin-bottom: 0.5rem; color: var(--gold-primary); }
+
+    .quiz-section { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 2rem 1.5rem; margin: 2rem auto; max-width: 800px; }
+    .quiz-progress { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; margin-bottom: 2rem; overflow: hidden; }
+    .progress-bar { height: 100%; background: var(--gold-primary); width: 33%; transition: width 0.5s ease; }
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; animation: fadeIn 0.4s ease; }
+    .options-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+    @media (min-width: 600px) { .options-grid { grid-template-columns: 1fr 1fr; } }
+
+    .quiz-option {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--text-primary);
+      padding: 1rem; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer; transition: var(--transition); text-align: left;
+    }
+    .quiz-option:hover { background: rgba(212, 175, 55, 0.2); border-color: var(--gold-primary); }
+
+    .quiz-result { text-align: center; padding: 2rem 0; }
+    .result-card { background: linear-gradient(135deg, #151515, #222); border: 1px solid var(--gold-primary); padding: 2rem; border-radius: var(--radius-lg); margin: 1.5rem 0; box-shadow: var(--shadow-gold); }
+    .result-card h4 { color: var(--gold-light); font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+    /* =========================================
+       SERVICES PANEL
+       ========================================= */
+    .services-panel { margin: 3rem 0; }
+    .panel-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tab-btn {
+      background: transparent; border: 1px solid var(--gold-dark); color: var(--gold-primary);
+      padding: 0.8rem 1.5rem; border-radius: 50px; cursor: pointer; font-size: 1rem; transition: var(--transition);
+    }
+    .tab-btn.active { background: var(--gold-primary); color: var(--bg-primary); font-weight: 500; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+    .service-card {
+      background: var(--bg-secondary); border: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-primary);
+      padding: 1.5rem 0.5rem; border-radius: var(--radius); cursor: pointer; transition: var(--transition);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-family: var(--font-body);
+    }
+    .service-card:hover { border-color: var(--gold-primary); background: var(--bg-card-hover); transform: scale(1.03); }
+
+    /* =========================================
+       3D TOUR SECTION
+       ========================================= */
+    .tour-section { margin: 4rem 0; }
+    .tour-container {
+      width: 100%; height: 350px; background: var(--bg-secondary); border-radius: var(--radius-lg);
+      border: 1px solid var(--gold-dark); overflow: hidden; position: relative; margin-top: 1.5rem;
+    }
+    @media (min-width: 768px) { .tour-container { height: 450px; } }
+    .tour-placeholder {
+      width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: repeating-linear-gradient(45deg, #111, #111 10px, #151515 10px, #151515 20px);
+    }
+    .tour-hotspots { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; }
+    .hotspot {
+      background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold-primary); color: var(--gold-light);
+      padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-size: 0.95rem; transition: var(--transition);
+    }
+    .hotspot:hover { background: rgba(212, 175, 55, 0.4); }
+
+    /* =========================================
+       CONTENT SECTIONS & MODAL
+       ========================================= */
+    .content-section { padding: 3rem 1.5rem; text-align: left; }
+    details { background: var(--bg-secondary); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem; cursor: pointer; }
+    summary { font-weight: 500; color: var(--gold-light); }
+
+    .modal {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px;
+      max-height: 90vh; overflow-y: auto; background: var(--bg-secondary); border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-lg); padding: 2rem; color: var(--text-primary); z-index: 1000; display: none;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+    .modal::backdrop { background: rgba(0,0,0,0.85); }
+    .modal-content { position: relative; }
+    .modal-close { position: absolute; top: -10px; right: -10px; background: transparent; border: none; color: var(--gold-primary); font-size: 2rem; cursor: pointer; z-index: 10; }
+
+    form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    label { display: flex; flex-direction: column; gap: 0.3rem; color: var(--gold-light); font-size: 0.95rem; }
+    input, textarea, select { padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #000; color: #fff; font-family: inherit; font-size: 1rem; width: 100%; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--gold-primary); box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2); }
+
+    .btn-primary { background: var(--gold-primary); color: var(--bg-primary); border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: var(--transition); }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-secondary { background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 1rem; border-radius: 8px; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); }
+    .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Reduced Motion Preference */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent CTA -->
+  <button class="cta-fixed" id="openBooking">✨ Experience Tea</button>
+
+  <!-- Side Navigation -->
+  <button class="nav-toggle" id="openNav" aria-label="Открыть меню">☰</button>
+  <nav class="side-nav" id="sideNav">
+    <button class="nav-close" id="closeNav" aria-label="Закрыть меню">&times;</button>
+    <ul>
+      <li><a href="#philosophy">🏮 Философия Дома</a></li>
+      <li><a href="#services-content">📦 Каталог услуг и товаров</a></li>
+      <li><a href="#faq">❓ FAQ</a></li>
+      <li><a href="#reviews">💬 Отзывы</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="cat-container">
+      <!-- Replace src with your Lottie JSON -->
+      <lottie-player id="catAnimation" src="https://assets10.lottiefiles.com/packages/lf20_khzniaya.json" background="transparent" speed="0.8" loop autoplay class="cat-lottie"></lottie-player>
+      <div class="sphere" id="introSphere">
+        <p>Дом — это пространство, где время замедляется, а душа находит покой.</p>
+      </div>
+    </div>
+    <h1 class="hero-title">Добро пожаловать в <span class="gold">Дом</span></h1>
+  </section>
+
+  <!-- ONBOARDING -->
+  <section class="onboarding" id="onboarding">
+    <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-secondary);">Выберите удобный способ знакомства с нашими практиками</p>
+    <div class="choice-cards">
+      <button class="choice-card" data-action="quiz">
+        <h3>🔮 Подобрать практику</h3>
+        <p>Ответьте на 3 вопроса — и мы найдём идеальное решение для вашего состояния</p>
+      </button>
+      <button class="choice-card" data-action="browse">
+        <h3>🗂️ Выбрать самостоятельно</h3>
+        <p>Просмотрите все варианты и выберите то, что откликается</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz-section hidden" id="quizSection">
+    <div class="quiz-container">
+      <div class="quiz-progress"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="quiz-step active" data-step="1">
+        <h3>Как вы себя чувствуете сейчас?</h3>
+        <div class="options-grid">
+          <button class="quiz-option" data-value="tired">😴 Устал(а) и хочу отдохнуть</button>
+          <button class="quiz-option" data-value="stressed">😰 Напряжён(а), нужно спокойствие</button>
+          <button class="quiz-option" data-value="joy">😊 Хочется радости и лёгкости</button>
+          <button class="quiz-option" data-value="connect">💞 Хочу близости и тепла</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="2">
+        <h3>С кем хотите провести время?</h3>
+        <div class="options-grid">
+          <button class="quiz-option" data-value="solo">👤 Только я</button>
+          <button class="quiz-option" data-value="partner">👫 С партнёром</button>
+          <button class="quiz-option" data-value="friends">👭 С друзьями</button>
+          <button class="quiz-option" data-value="any">✨ Не важно</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="3">
+        <h3>Какой формат вам ближе?</h3>
+        <div class="options-grid">
+          <button class="quiz-option" data-value="space">🏠 В нашем пространстве</button>
+          <button class="quiz-option" data-value="outdoor">🚗 Выездной формат</button>
+        </div>
+      </div>
+      <div class="quiz-result hidden" id="quizResult">
+        <h3>✨ Мы подобрали для вас:</h3>
+        <div class="result-card" id="resultCard"></div>
+        <button class="btn-primary" id="bookFromQuiz">Записаться на этот опыт</button>
+        <button class="btn-secondary" id="retakeQuiz">Пройти ещё раз</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE PANEL -->
+  <section class="services-panel hidden" id="servicesPanel">
+    <div class="panel-tabs">
+      <button class="tab-btn active" data-tab="audience">👥 По составу</button>
+      <button class="tab-btn" data-tab="mood">💫 По настроению</button>
+    </div>
+    <div class="tab-content active" id="tab-audience">
+      <div class="service-grid">
+        <button class="service-card" data-service="Для неё">🌸 Для неё</button>
+        <button class="service-card" data-service="Для него">🌿 Для него</button>
+        <button class="service-card" data-service="Для пары">💑 Для пары</button>
+        <button class="service-card" data-service="Для компании">🎉 Для компании</button>
+        <button class="service-card" data-service="Аренда">🏡 Аренда</button>
+        <button class="service-card" data-service="Выезд">🚐 Выезд</button>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-mood">
+      <div class="service-grid">
+        <button class="service-card" data-service="Расслабление">🧘 Расслабление</button>
+        <button class="service-card" data-service="Удовольствие">🍯 Удовольствие</button>
+        <button class="service-card" data-service="Спокойствие">🕊️ Спокойствие</button>
+        <button class="service-card" data-service="Веселье">🎈 Веселье</button>
+        <button class="service-card" data-service="Выездной формат">🚐 Выездной формат</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D TOUR -->
+  <section class="tour-section" id="tourSection">
+    <h2>Погрузитесь в пространство Дома</h2>
+    <div class="tour-container" id="tourContainer">
+      <div class="tour-placeholder">
+        <p>🔄 Здесь будет интерактивный 3D-тур</p>
+        <p class="small">Вставьте iframe от Momento360 / CloudPano</p>
+        <div class="tour-hotspots">
+          <button class="hotspot" data-target="tea">🍵 Чайный уголок</button>
+          <button class="hotspot" data-target="relax">🛋️ Зона отдыха</button>
+          <button class="hotspot" data-target="garden">🌿 Сад</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTIONS -->
+  <section id="philosophy" class="content-section">
+    <h2>🏮 Философия Дома</h2>
+    <p>Дом — это не место. Это состояние. Мы создали пространство, где каждая деталь дышит умиротворением, а время течёт иначе.</p>
+  </section>
+
+  <section id="services-content" class="content-section">
+    <h2>📦 Каталог услуг и товаров</h2>
+    <p>Чайные церемонии, телесные практики, авторские сборы и предметы интерьера.</p>
+  </section>
+
+  <section id="faq" class="content-section">
+    <h2>❓ Частые вопросы</h2>
+    <details><summary>Как записаться?</summary><p>Нажмите кнопку «Прожить опыт» или пройдите короткий опрос. Мы свяжемся с вами для подтверждения.</p></details>
+    <details><summary>Можно ли прийти без записи?</summary><p>Рекомендуем бронировать заранее, чтобы мы могли подготовить пространство именно для вас.</p></details>
+    <details><summary>Есть ли подарочные сертификаты?</summary><p>Да! Оформляются на любую сумму или конкретную практику. Доступны в цифровом виде.</p></details>
+  </section>
+
+  <section id="reviews" class="content-section">
+    <h2>💬 Отзывы</h2>
+    <p>«Здесь я впервые за месяц выдохнула. Атмосфера, чай, внимание к деталям — всё идеально.»</p>
+    <p class="small">— Алина, гость Дома</p>
+  </section>
+
+  <!-- BOOKING MODAL -->
+  <dialog class="modal" id="bookingModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Закрыть">&times;</button>
+      <h3>✨ Прожить опыт</h3>
+      <form id="bookingForm">
+        <input type="hidden" id="selectedService" name="service">
+        <label>Ваше имя <input type="text" name="name" required placeholder="Анна"></label>
+        <label>Телефон / Telegram <input type="tel" name="contact" required placeholder="+7 (___) ___-__-__"></label>
+        <label>Предпочтительная дата <input type="date" name="date"></label>
+        <label>Комментарий <textarea name="note" rows="3" placeholder="Пожелания, аллергии, особые запросы..."></textarea></label>
+        <button type="submit" class="btn-primary">Отправить заявку</button>
+      </form>
+      <p class="small" style="margin-top: 1rem; text-align: center;">Мы свяжемся с вами в течение 2 часов 💛</p>
+    </div>
+  </dialog>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. HERO ANIMATIONS
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".hero-title", { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: "power2.out" });
+      gsap.from(".sphere", { scale: 0, duration: 1.5, ease: "elastic.out(1, 0.5)", delay: 0.2 });
+
+      // 2. NAVIGATION
+      const nav = document.getElementById('sideNav');
+      const openBtn = document.getElementById('openNav');
+      const closeBtn = document.getElementById('closeNav');
+
+      openBtn.addEventListener('click', () => { nav.classList.add('open'); openBtn.style.opacity = '0'; setTimeout(() => openBtn.style.pointerEvents = 'none', 300); });
+      closeBtn.addEventListener('click', () => { nav.classList.remove('open'); openBtn.style.opacity = '1'; openBtn.style.pointerEvents = 'auto'; });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { nav.classList.remove('open'); openBtn.style.opacity = '1'; openBtn.style.pointerEvents = 'auto'; }));
+
+      // 3. ONBOARDING & QUIZ
+      const choiceCards = document.querySelectorAll('.choice-card');
+      const quizSection = document.getElementById('quizSection');
+      const servicesPanel = document.getElementById('servicesPanel');
+      const quizSteps = document.querySelectorAll('.quiz-step');
+      const progressBar = document.getElementById('progressBar');
+      const quizResult = document.getElementById('quizResult');
+      const resultCard = document.getElementById('resultCard');
+      let answers = {};
+
+      choiceCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const action = card.dataset.action;
+          gsap.to('.onboarding', { opacity: 0, height: 0, duration: 0.3, onComplete: () => document.querySelector('.onboarding').style.display = 'none' });
+          if (action === 'quiz') {
+            quizSection.classList.remove('hidden'); quizSection.style.display = 'block';
+            gsap.fromTo(quizSection, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+          } else {
+            servicesPanel.classList.remove('hidden'); servicesPanel.style.display = 'block';
+            gsap.fromTo(servicesPanel, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+          }
+        });
+      });
+
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const currentStep = parseInt(e.target.closest('.quiz-step').dataset.step);
+          answers[`step${currentStep}`] = btn.dataset.value;
+          const siblings = e.target.parentElement.querySelectorAll('.quiz-option');
+          siblings.forEach(s => { s.style.borderColor = 'rgba(212, 175, 55, 0.3)'; s.style.background = 'rgba(255, 255, 255, 0.05)'; });
+          btn.style.borderColor = '#D4AF37'; btn.style.background = 'rgba(212, 175, 55, 0.2)';
+
+          setTimeout(() => {
+            if (currentStep < quizSteps.length) {
+              e.target.closest('.quiz-step').classList.remove('active'); e.target.closest('.quiz-step').style.display = 'none';
+              const nextStep = document.querySelector(`.quiz-step[data-step="${currentStep + 1}"]`);
+              nextStep.style.display = 'block'; nextStep.classList.add('active');
+              progressBar.style.width = `${((currentStep + 1) / quizSteps.length) * 100}%`;
+              gsap.from(nextStep, { opacity: 0, x: 20, duration: 0.3 });
+            } else { showResult(); }
+          }, 300);
+        });
+      });
+
+      function showResult() {
+        quizSteps.forEach(s => s.classList.remove('active'));
+        document.querySelector('.quiz-progress').style.display = 'none';
+        let serviceName = "Индивидуальная практика «Покой»";
+        if (answers.step1 === 'joy' || answers.step2 === 'friends') serviceName = "Групповая практика «Радость»";
+        else if (answers.step2 === 'partner') serviceName = "Практика «Для двоих»";
+        else if (answers.step3 === 'outdoor') serviceName = "Выездной формат «Дом в гостях»";
+
+        resultCard.innerHTML = `<h4>✨ ${serviceName}</h4><p>На основе ваших ответов мы рекомендуем начать с этого формата.</p>`;
+        quizResult.classList.remove('hidden'); quizResult.style.display = 'block';
+        gsap.from(quizResult, { opacity: 0, scale: 0.9, duration: 0.5 });
+        document.getElementById('selectedService').value = serviceName;
+      }
+
+      document.getElementById('retakeQuiz').addEventListener('click', () => location.reload());
+      document.getElementById('bookFromQuiz').addEventListener('click', () => openModal(document.getElementById('selectedService').value));
+
+      // 4. SERVICES TABS
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.tab;
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => { c.classList.remove('active'); c.style.display = 'none'; });
+          btn.classList.add('active');
+          const active = document.getElementById(`tab-${target}`);
+          active.style.display = 'block'; active.classList.add('active');
+        });
+      });
+
+      // 5. MODAL
+      const modal = document.getElementById('bookingModal');
+      const openBookingBtn = document.getElementById('openBooking');
+      const closeModalBtn = document.getElementById('closeModal');
+      const bookingForm = document.getElementById('bookingForm');
+
+      function openModal(serviceName = '') {
+        document.getElementById('selectedService').value = serviceName;
+        modal.showModal(); document.body.style.overflow = 'hidden';
+        gsap.fromTo('.modal-content', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3 });
+      }
+      function closeModalFn() { modal.close(); document.body.style.overflow = ''; }
+
+      openBookingBtn.addEventListener('click', () => openModal());
+      closeModalBtn.addEventListener('click', closeModalFn);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFn(); });
+
+      document.querySelectorAll('.service-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.service)));
+
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = bookingForm.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Отправлено! 💛'; btn.style.background = '#4CAF50';
+        setTimeout(() => { closeModalFn(); btn.textContent = originalText; btn.style.background = ''; bookingForm.reset(); }, 1500);
+      });
+
+      // 6. APP INTEGRATION
+      window.receiveMessage = (data) => {
+        if (data.action === 'openService' && data.service) openModal(data.service);
+        if (data.action === 'openQuiz') document.querySelector('[data-action="quiz"]')?.click();
+      };
+      window.addEventListener('message', (e) => { try { receiveMessage(JSON.parse(e.data)); } catch(err) { if (e.data?.includes('"action"')) receiveMessage(JSON.parse(e.data)); } });
+    });
+  </script>
+</body>
+</html>
