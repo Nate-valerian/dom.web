@@ -260,6 +260,15 @@ function toggleAcc(slug){
   item.classList.toggle('open', !isOpen);
 }
 
+(function(){
+  document.querySelectorAll('.media-card video source').forEach(function(source){
+    source.addEventListener('error',function(){
+      var card = source.closest('.media-card');
+      if(card) card.classList.add('media-missing');
+    });
+  });
+})();
+
 
 
 

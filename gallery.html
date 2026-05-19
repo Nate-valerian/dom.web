@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Галерея ДОМ — фото и видео пространства</title>
+<meta name="description" content="Галерея пространства ДОМ на Новом Арбате: фото, видео, атмосфера, чайные церемонии, практики и события.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="gallery-page">
+<canvas id="bg-canvas"></canvas>
+<div id="cur"></div>
+<div id="cur2"></div>
+<canvas id="sparkle-canvas"></canvas>
+
+<nav id="nav">
+  <a href="index.html#hero" class="logo-slot ls-nav" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#chooser">Подобрать</a></li>
+    <li><a href="index.html#programs">Программы</a></li>
+    <li><a href="index.html#featured-media">Фото и видео</a></li>
+    <li><a href="index.html#rental">Аренда</a></li>
+    <li><a href="index.html#corporate">Корпоративам</a></li>
+    <li><a href="index.html#contact">Контакты</a></li>
+  </ul>
+  <a href="https://wa.me/79850932711" target="_blank" class="nav-btn">Записаться</a>
+
+  <button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-menu-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
+    <a href="index.html#chooser" onclick="document.getElementById('mobMenu').classList.remove('open')">Подобрать формат</a>
+    <a href="index.html#programs" onclick="document.getElementById('mobMenu').classList.remove('open')">Программы</a>
+    <a href="index.html#featured-media" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
+    <a href="index.html#rental" onclick="document.getElementById('mobMenu').classList.remove('open')">Аренда</a>
+    <a href="index.html#corporate" onclick="document.getElementById('mobMenu').classList.remove('open')">Корпоративам</a>
+    <a href="index.html#contact" onclick="document.getElementById('mobMenu').classList.remove('open')" style="color:#c9a86c">Записаться</a>
+  </div>
+</nav>
+
+<div class="particles" id="particles"></div>
+
+<main>
+  <section class="gallery gallery-page-section" id="gallery">
+    <div class="gallery-header fu">
+      <div class="s-label">Фото и видео</div>
+      <h1 class="sec-title">Галерея <em>ДОМа</em></h1>
+      <p style="font-size:15px;line-height:1.8;color:var(--ash);max-width:560px;margin-top:14px;font-weight:300">Фрагменты пространства, церемоний, света и живых событий. Все медиа — в вертикальном формате 9:16.</p>
+    </div>
+    <div class="gallery-grid fu" id="galleryPageGrid"></div>
+  </section>
+</main>
+
+<div class="ck-banner" id="ckBanner">
+  <p class="ck-text">Мы используем файлы cookie для корректной работы сайта.</p>
+  <div class="ck-btns">
+    <button class="ck-dec" onclick="ckDecline()">Только необходимые</button>
+    <button class="ck-acc" onclick="ckAccept()">Принять</button>
+  </div>
+</div>
+
+<script>
+const galleryItems = [
+  ['photo','photo-03.webp','Детали интерьера и света в ДОМе','детали'],
+  ['video','video-03.mp4','video-03-poster.webp','5D опыт'],
+  ['photo','photo-04.webp','Гости на событии в ДОМе','события'],
+  ['photo','photo-05.webp','Атмосферный фрагмент пространства ДОМ','ритуал'],
+  ['video','video-04.mp4','video-04-poster.webp','свет'],
+  ['photo','photo-06.webp','Мультимедийная атмосфера ДОМа','иммерсия'],
+  ['video','video-05.mp4','video-05-poster.webp','событие'],
+  ['photo','photo-07.webp','Чай, свет и детали события в ДОМе','настройка'],
+  ['photo','photo-08.webp','Фрагмент практики или церемонии в ДОМе','практика'],
+  ['video','video-06.mp4','video-06-poster.webp','ритм'],
+  ['photo','photo-09.webp','Общее настроение пространства ДОМ','ДОМ'],
+  ['video','video-07.mp4','video-07-poster.webp','момент'],
+  ['photo','photo-10.webp','Фрагмент пространства и атмосферы ДОМ','атмосфера'],
+  ['photo','photo-11.webp','Деталь чайной церемонии в ДОМе','церемония'],
+  ['photo','photo-12.webp','Световой фрагмент события в ДОМе','свет'],
+  ['video','video-08.mp4','video-08-poster.webp','движение'],
+  ['photo','photo-13.webp','Гости и детали события в ДОМе','гости'],
+  ['photo','photo-14.webp','Интерьерная деталь пространства ДОМ','интерьер'],
+  ['photo','photo-15.webp','Атмосфера ритуала или практики в ДОМе','глубина'],
+  ['video','video-09.mp4','video-09-poster.webp','пространство'],
+  ['photo','photo-16.webp','Камерная атмосфера события в ДОМе','камерность'],
+  ['photo','photo-17.webp','Детали сервировки и чая в ДОМе','детали'],
+  ['photo','photo-18.webp','Мультимедийный фрагмент пространства ДОМ','медиа'],
+  ['video','video-10.mp4','video-10-poster.webp','состояние'],
+  ['photo','photo-19.webp','Живой фрагмент мероприятия в ДОМе','жизнь'],
+  ['photo','photo-20.webp','Фрагмент практики и света в ДОМе','практика'],
+  ['photo','photo-21.webp','Образ пространства ДОМ в деталях','образ'],
+  ['video','video-11.mp4','video-11-poster.webp','финал'],
+  ['photo','photo-22.webp','Тёплый фрагмент пространства ДОМ','тепло'],
+  ['photo','photo-23.webp','Заключительный фрагмент галереи ДОМ','память']
+];
+
+const grid = document.getElementById('galleryPageGrid');
+galleryItems.forEach(function(item){
+  const fig = document.createElement('figure');
+  fig.className = 'gs media-card' + (item[0] === 'video' ? ' media-video' : '');
+  if(item[0] === 'video'){
+    fig.innerHTML = `<div class="vbadge">▶ видео</div><video controls muted playsinline preload="metadata" poster="assets/gallery/${item[2]}" onerror="this.closest('.gs').classList.add('media-missing')"><source src="assets/gallery/${item[1]}" type="video/mp4"></video><figcaption>${item[3]}</figcaption><div class="media-fallback"><span>видео</span></div>`;
+  }else{
+    fig.innerHTML = `<img src="assets/gallery/${item[1]}" alt="${item[2]}" loading="lazy" onerror="this.closest('.gs').classList.add('media-missing')"><figcaption>${item[3]}</figcaption><div class="media-fallback"><span>фото</span></div>`;
+  }
+  grid.appendChild(fig);
+});
+</script>
+<script src="main.js" defer></script>
+</body>
+</html>

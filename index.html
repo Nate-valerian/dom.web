@@ -76,11 +76,11 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="logo-slot ls-nav" aria-label="ДОМ">ДОМ</a>
+  <a href="#hero" class="logo-slot ls-nav" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></a>
   <ul class="nav-links">
     <li><a href="#chooser">Подобрать</a></li>
     <li><a href="#programs">Программы</a></li>
-    <li><a href="#gallery">Фото & Видео</a></li>
+    <li><a href="#featured-media">Фото и видео</a></li>
     <li><a href="#rental">Аренда</a></li>
     <li><a href="#corporate">Корпоративам</a></li>
     <li><a href="#outreach">Выездной</a></li>
@@ -96,7 +96,7 @@
   <a href="#chooser" onclick="document.getElementById('mobMenu').classList.remove('open')">Подобрать формат</a>
   <a href="#programs" onclick="document.getElementById('mobMenu').classList.remove('open')">Программы</a>
   <a href="#forwhom" onclick="document.getElementById('mobMenu').classList.remove('open')">Для кого</a>
-  <a href="#gallery" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
+  <a href="#featured-media" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
   <a href="#tea" onclick="document.getElementById('mobMenu').classList.remove('open')">Чай и подарки</a>
   <a href="#rental" onclick="document.getElementById('mobMenu').classList.remove('open')">Аренда</a>
   <a href="#corporate" onclick="document.getElementById('mobMenu').classList.remove('open')">Корпоративам</a>
@@ -116,7 +116,7 @@
   <div class="particles" id="particles"></div>
   <div class="hero-content">
     <div class="eyebrow">Москва · Женское пространство · Новый Арбат 12/15</div>
-    <div class="hero-logo-wrap"><div class="logo-slot ls-hero" aria-label="ДОМ">ДОМ</div></div>
+    <div class="hero-logo-wrap"><div class="logo-slot ls-hero" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></div></div>
     <p class="hero-title">Где реальность становится <span class="shim-gold">опытом</span></p>
     <p class="hero-tagline">Мультимедийное пространство 5D · Тело · Звук · Свет · Технология · ИИ</p>
     <p class="hero-p">Мультимедийное пространство нового формата на Новом Арбате, где практики осознанности, телесные и трансформационные форматы усиливаются эстетикой, сценарием и AI-подходом. Мы создаём опыт, а не просто мероприятия.</p>
@@ -124,6 +124,12 @@
       <a href="#chooser" class="btn-p">Подобрать программу</a>
       <a href="https://wa.me/79850932711" target="_blank" class="btn-g">Забронировать</a>
     </div>
+  </div>
+  <div class="hero-media hero-media-grid" aria-label="Видео ДОМ">
+    <video class="hero-video-card" src="assets/gallery/hero-card-01.mp4" poster="assets/gallery/hero-card-01-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="hero-video-card" src="assets/gallery/hero-card-02.mp4" poster="assets/gallery/hero-card-02-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="hero-video-card" src="assets/gallery/hero-card-03.mp4" poster="assets/gallery/hero-card-03-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="hero-video-card" src="assets/gallery/hero-card-04.mp4" poster="assets/gallery/hero-card-04-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
@@ -155,6 +161,47 @@
     </div>
   </div>
 </div>
+
+<!-- FEATURED MEDIA -->
+<section class="featured-media" id="featured-media">
+  <div class="featured-media-inner fu">
+    <div class="featured-media-head">
+      <div>
+        <div class="s-label">Живой ДОМ</div>
+        <h2 class="sec-title">Несколько <em>фрагментов</em></h2>
+      </div>
+      <a href="gallery.html" class="featured-media-link">Большая галерея</a>
+    </div>
+    <div class="featured-media-grid">
+      <figure class="gs media-card media-video">
+        <div class="vbadge">▶ видео</div>
+        <video controls muted playsinline preload="metadata" poster="assets/gallery/video-01-poster.webp" onerror="this.closest('.gs').classList.add('media-missing')">
+          <source src="assets/gallery/video-01.mp4" type="video/mp4">
+        </video>
+        <figcaption>атмосфера</figcaption>
+        <div class="media-fallback"><span>видео</span></div>
+      </figure>
+      <figure class="gs media-card">
+        <img src="assets/gallery/photo-01.webp" alt="Интерьер пространства ДОМ" loading="lazy" onerror="this.closest('.gs').classList.add('media-missing')">
+        <figcaption>пространство</figcaption>
+        <div class="media-fallback"><span>фото</span></div>
+      </figure>
+      <figure class="gs media-card">
+        <img src="assets/gallery/photo-02.webp" alt="Чайная церемония в ДОМе" loading="lazy" onerror="this.closest('.gs').classList.add('media-missing')">
+        <figcaption>чай</figcaption>
+        <div class="media-fallback"><span>фото</span></div>
+      </figure>
+      <figure class="gs media-card media-video">
+        <div class="vbadge">▶ видео</div>
+        <video controls muted playsinline preload="metadata" poster="assets/gallery/video-02-poster.webp" onerror="this.closest('.gs').classList.add('media-missing')">
+          <source src="assets/gallery/video-02.mp4" type="video/mp4">
+        </video>
+        <figcaption>практика</figcaption>
+        <div class="media-fallback"><span>видео</span></div>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <!-- CHOOSER -->
 <section class="chooser" id="chooser">
@@ -801,31 +848,6 @@
 </section>
 
 
-
-<!-- GALLERY — vertical 9:16 -->
-<section class="gallery" id="gallery" style="padding-top:120px">
-  <div class="gallery-header fu">
-    <div class="s-label">Фото и видео</div>
-    <h2 class="sec-title">Атмосфера <em>ДОМа</em></h2>
-    <p style="font-size:14px;color:var(--ash);font-weight:300;margin-top:12px;max-width:480px">Все медиа — в вертикальном формате 9:16. Скоро здесь появятся фото и видео из пространства.</p>
-  </div>
-  <div class="gallery-grid fu">
-    <!-- row 1 — 5 vertical slots -->
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-    <div class="gs gs-shim"><div class="vbadge">▶ видео</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>видео</span></div>
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-    <div class="gs gs-shim"><div class="vbadge">▶ видео</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>видео</span></div>
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-    <!-- row 2 -->
-    <div class="gs gs-shim"><div class="vbadge">▶ видео</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>видео</span></div>
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-    <div class="gs gs-shim"><div class="vbadge">▶ видео</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>видео</span></div>
-    <div class="gs gs-shim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15L16 10L5 21"/></svg><span>фото</span></div>
-  </div>
-</section>
-
-
 <!-- ═══ RENTAL & EVENTS ═══ -->
 <section class="rental-section fu" id="rental">
   <div class="s-label">Пространство</div>
@@ -1136,7 +1158,7 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner fu">
-    <div class="contact-logo-wrap"><div class="logo-slot ls-contact" aria-label="ДОМ">ДОМ</div></div>
+    <div class="contact-logo-wrap"><div class="logo-slot ls-contact" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></div></div>
     <h2>Войдите<br>в <em>ДОМ</em></h2>
     <p>Все форматы — по предварительной записи. Расскажите о себе — и мы подберём опыт под ваше состояние.</p>
     <form class="contact-form" id="contactForm">
@@ -1165,7 +1187,7 @@
 </section>
 
 <footer>
-  <div class="logo-slot ls-foot" aria-label="ДОМ">ДОМ</div>
+  <div class="logo-slot ls-foot" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></div>
   <div class="f-center" style="text-align:center;font-size:13px;color:var(--ash);font-weight:300">Женское пространство · Новый Арбат 12/15<br>Мультимедийное пространство 5D · Москва</div>
   <div class="f-right" style="font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,108,.3)">© 2025 ДОМ</div>
 </footer>
