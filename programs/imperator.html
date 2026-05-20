@@ -1,68 +1,95 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/webp" href="/assets/brand/logo.webp">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Титул Императора — ДОМ</title>
 <meta name="description" content="Ритуальная программа про статус, внимание и признание. Пространство работает на гостя полностью: свет, музыка, сценарий и команда создают ощущение силы, собранности и уважения.">
+<link rel="canonical" href="https://domwomenspace.ru/programs/imperator.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Титул Императора — ДОМ">
+<meta property="og:description" content="Ритуальная программа про статус, внимание и признание. От 25 000 ₽.">
+<meta property="og:url" content="https://domwomenspace.ru/programs/imperator.html">
+<meta property="og:image" content="https://domwomenspace.ru/assets/gallery/photo-05.webp">
+<meta property="og:site_name" content="ДОМ · Женское пространство">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Титул Императора — ДОМ">
+<meta name="twitter:description" content="Ритуальная программа про статус, внимание и признание. От 25 000 ₽.">
+<meta name="twitter:image" content="https://domwomenspace.ru/assets/gallery/photo-05.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Титул Императора","description":"Ритуальная программа про статус, внимание и признание.","image":"https://domwomenspace.ru/assets/gallery/photo-05.webp","provider":{"@type":"LocalBusiness","name":"ДОМ · Женское пространство","url":"https://domwomenspace.ru"},"offers":{"@type":"Offer","price":"25000","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://domwomenspace.ru/programs/imperator.html"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../programs.css">
 </head>
-<body class="program-page">
-<main class="program-detail">
-  <div class="program-detail-inner">
-    <a class="program-detail-back" href="../index.html#acc-imperator">← к программам</a>
+<body class="pg-page">
 
-    <section class="program-detail-hero program-detail-hero-media">
-      <div>
-        <div class="s-label">Мужской ритуал · статус</div>
-        <h1 class="program-detail-title">Титул <em>Императора</em></h1>
-        <p class="program-detail-copy">Ритуальная программа про статус, внимание и признание. Пространство работает на гостя полностью: свет, музыка, сценарий и команда создают ощущение силы, собранности и уважения.</p>
+<canvas id="bg-canvas"></canvas>
+<canvas id="sparkle-canvas"></canvas>
+<div id="cur"></div>
+<div id="cur2"></div>
+<div class="particles" id="particles"></div>
+
+<main class="pg-shell">
+  <a class="pg-back" href="../index.html#acc-imperator">← к программам</a>
+
+  <section class="pg-hero">
+    <div class="pg-hero-text">
+      <div class="pg-eyebrow">Мужской ритуал · статус</div>
+      <h1 class="pg-title">Титул <em>Императора</em></h1>
+      <div class="pg-price">
+        <span class="pg-price-from">от</span>
+        <span class="pg-price-amount">25 000 ₽</span>
       </div>
-      <figure class="program-detail-media">
-        <img src="../assets/gallery/photo-05.webp" alt="Титул Императора в ДОМе">
-      </figure>
-    </section>
-
-    <section class="program-detail-grid">
-      <article class="program-detail-card">
-        <strong>Для кого</strong>
-        <p>Для VIP-гостей, руководителей, награждений, закрытых мужских событий и особых ролей внутри команды.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Как проходит</strong>
-        <p>Мы собираем сценарий под повод: встреча, символическое признание, чайная пауза, атмосфера и детали, которые подчеркивают личный статус без лишней театральности.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Что останется</strong>
-        <p>Гость получает опыт внимания, спокойной силы и красивого признания. Это не пафос, а точная настройка пространства под человека.</p>
-      </article>
-    </section>
-
-    <section class="program-detail-split">
-      <div class="program-detail-panel">
-        <h2>В программу входит</h2>
-        <div class="program-detail-list">
-          <span>персональный сценарий</span>
-          <span>ритуал признания</span>
-          <span>музыка и свет</span>
-          <span>90 минут</span>
-          <span>1 человек</span>
-          <span>VIP формат</span>
-        </div>
-      </div>
-      <div class="program-detail-gallery">
-        <img src="../assets/gallery/photo-14.webp" alt="Детали программы Титул Императора">
-        <img src="../assets/gallery/photo-23.webp" alt="Атмосфера ДОМа">
-      </div>
-    </section>
-
-    <div class="program-detail-actions">
-      <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Титул Императора" target="_blank" rel="noopener">Записаться</a>
-      <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
+      <p class="pg-desc">Ритуальная программа про статус, внимание и признание. Пространство работает на гостя полностью: свет, музыка, сценарий и команда создают ощущение силы, собранности и уважения.</p>
     </div>
+    <figure class="pg-hero-media">
+      <img src="../assets/gallery/photo-05.webp" alt="Титул Императора в ДОМе">
+    </figure>
+  </section>
+
+  <section class="pg-cards">
+    <article class="pg-card">
+      <strong>Для кого</strong>
+      <p>Для VIP-гостей, руководителей, награждений, закрытых мужских событий и особых ролей внутри команды.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Как проходит</strong>
+      <p>Мы собираем сценарий под повод: встреча, символическое признание, чайная пауза, атмосфера и детали, которые подчеркивают личный статус без лишней театральности.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Что останется</strong>
+      <p>Гость получает опыт внимания, спокойной силы и красивого признания. Это не пафос, а точная настройка пространства под человека.</p>
+    </article>
+  </section>
+
+  <section class="pg-detail-row">
+    <div class="pg-panel">
+      <h2>В программу входит</h2>
+      <div class="pg-tags">
+        <span>персональный сценарий</span>
+        <span>ритуал признания</span>
+        <span>музыка и свет</span>
+        <span>90 минут</span>
+        <span>1 человек</span>
+        <span>VIP формат</span>
+      </div>
+    </div>
+    <div class="pg-gallery">
+      <img src="../assets/gallery/photo-14.webp" alt="Детали программы Титул Императора">
+      <img src="../assets/gallery/photo-23.webp" alt="Атмосфера ДОМа">
+    </div>
+  </section>
+
+  <div class="pg-actions">
+    <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Титул Императора" target="_blank" rel="noopener">Записаться</a>
+    <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
   </div>
+  <section class="pg-related"></section>
 </main>
+
+<script src="../main.js" defer></script>
+<script src="../programs-related.js" defer></script>
 </body>
 </html>
-

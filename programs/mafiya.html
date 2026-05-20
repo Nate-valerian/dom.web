@@ -1,68 +1,96 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/webp" href="/assets/brand/logo.webp">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Мафия — ДОМ</title>
 <meta name="description" content="Интеллектуально-психологическая игра, которая развивает коммуникацию, стратегию, лидерство и наблюдательность. В ДОМе она становится камерным вечерним событием.">
+<link rel="canonical" href="https://domwomenspace.ru/programs/mafiya.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Мафия — ДОМ">
+<meta property="og:description" content="Интеллектуально-психологическая игра для корпоративов и тимбилдинга. От 2 500 ₽ с гостя в час.">
+<meta property="og:url" content="https://domwomenspace.ru/programs/mafiya.html">
+<meta property="og:image" content="https://domwomenspace.ru/assets/gallery/photo-19.webp">
+<meta property="og:site_name" content="ДОМ · Женское пространство">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Мафия — ДОМ">
+<meta name="twitter:description" content="Интеллектуально-психологическая игра. От 2 500 ₽ с гостя в час.">
+<meta name="twitter:image" content="https://domwomenspace.ru/assets/gallery/photo-19.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Мафия","description":"Интеллектуально-психологическая игра, которая развивает коммуникацию и стратегию.","image":"https://domwomenspace.ru/assets/gallery/photo-19.webp","provider":{"@type":"LocalBusiness","name":"ДОМ · Женское пространство","url":"https://domwomenspace.ru"},"offers":{"@type":"Offer","price":"2500","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://domwomenspace.ru/programs/mafiya.html"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../programs.css">
 </head>
-<body class="program-page">
-<main class="program-detail">
-  <div class="program-detail-inner">
-    <a class="program-detail-back" href="../index.html#acc-mafiya">← к программам</a>
+<body class="pg-page">
 
-    <section class="program-detail-hero program-detail-hero-media">
-      <div>
-        <div class="s-label">Интеллектуальная игра</div>
-        <h1 class="program-detail-title"><em>Мафия</em></h1>
-        <p class="program-detail-copy">Интеллектуально-психологическая игра, которая развивает коммуникацию, стратегию, лидерство и наблюдательность. В ДОМе она становится камерным вечерним событием.</p>
+<canvas id="bg-canvas"></canvas>
+<canvas id="sparkle-canvas"></canvas>
+<div id="cur"></div>
+<div id="cur2"></div>
+<div class="particles" id="particles"></div>
+
+<main class="pg-shell">
+  <a class="pg-back" href="../index.html#acc-mafiya">← к программам</a>
+
+  <section class="pg-hero">
+    <div class="pg-hero-text">
+      <div class="pg-eyebrow">Интеллектуальная игра</div>
+      <h1 class="pg-title"><em>Мафия</em></h1>
+      <div class="pg-price">
+        <span class="pg-price-from">от</span>
+        <span class="pg-price-amount">2 500 ₽</span>
+        <span class="pg-price-note">с гостя / в час</span>
       </div>
-      <figure class="program-detail-media">
-        <img src="../assets/gallery/photo-19.webp" alt="Мафия в ДОМе">
-      </figure>
-    </section>
-
-    <section class="program-detail-grid">
-      <article class="program-detail-card">
-        <strong>Для кого</strong>
-        <p>Для корпоративов, тимбилдинга, закрытых встреч, дней рождения и команд, которым нужен живой формат с азартом и смыслом.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Как проходит</strong>
-        <p>Ведущий объясняет правила, держит темп игры, помогает вовлечь участников и поддерживает атмосферу интриги без хаоса.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Что останется</strong>
-        <p>Команда раскрывается через роли, переговоры и наблюдение. Формат дает энергию, смех и много материала для общения после игры.</p>
-      </article>
-    </section>
-
-    <section class="program-detail-split">
-      <div class="program-detail-panel">
-        <h2>В программу входит</h2>
-        <div class="program-detail-list">
-          <span>ведущий игры</span>
-          <span>командная динамика</span>
-          <span>стратегия</span>
-          <span>2-3 часа</span>
-          <span>8-20 человек</span>
-          <span>закрытый вечер</span>
-        </div>
-      </div>
-      <div class="program-detail-gallery">
-        <img src="../assets/gallery/photo-09.webp" alt="Детали программы Мафия">
-        <img src="../assets/gallery/photo-21.webp" alt="Атмосфера ДОМа">
-      </div>
-    </section>
-
-    <div class="program-detail-actions">
-      <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Мафия" target="_blank" rel="noopener">Записаться</a>
-      <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
+      <p class="pg-desc">Интеллектуально-психологическая игра, которая развивает коммуникацию, стратегию, лидерство и наблюдательность. В ДОМе она становится камерным вечерним событием.</p>
     </div>
+    <figure class="pg-hero-media">
+      <img src="../assets/gallery/photo-19.webp" alt="Мафия в ДОМе">
+    </figure>
+  </section>
+
+  <section class="pg-cards">
+    <article class="pg-card">
+      <strong>Для кого</strong>
+      <p>Для корпоративов, тимбилдинга, закрытых встреч, дней рождения и команд, которым нужен живой формат с азартом и смыслом.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Как проходит</strong>
+      <p>Ведущий объясняет правила, держит темп игры, помогает вовлечь участников и поддерживает атмосферу интриги без хаоса.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Что останется</strong>
+      <p>Команда раскрывается через роли, переговоры и наблюдение. Формат дает энергию, смех и много материала для общения после игры.</p>
+    </article>
+  </section>
+
+  <section class="pg-detail-row">
+    <div class="pg-panel">
+      <h2>В программу входит</h2>
+      <div class="pg-tags">
+        <span>ведущий игры</span>
+        <span>командная динамика</span>
+        <span>стратегия</span>
+        <span>2-3 часа</span>
+        <span>8-20 человек</span>
+        <span>закрытый вечер</span>
+      </div>
+    </div>
+    <div class="pg-gallery">
+      <img src="../assets/gallery/photo-09.webp" alt="Детали программы Мафия">
+      <img src="../assets/gallery/photo-01.webp" alt="Атмосфера ДОМа">
+    </div>
+  </section>
+
+  <div class="pg-actions">
+    <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Мафия" target="_blank" rel="noopener">Записаться</a>
+    <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
   </div>
+  <section class="pg-related"></section>
 </main>
+
+<script src="../main.js" defer></script>
+<script src="../programs-related.js" defer></script>
 </body>
 </html>
-
