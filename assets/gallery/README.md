@@ -8,10 +8,11 @@ Photos:
 
 Videos:
 
-- `video-01.mp4` through `video-11.mp4`
-- `video-01-poster.webp` through `video-11-poster.webp`
-- `hero-card-01.mp4` through `hero-card-04.mp4`
-- `hero-card-01-poster.webp` through `hero-card-04-poster.webp`
+- `video-02.mp4` through `video-04.mp4`, plus `video-06.mp4` through `video-11.mp4`
+- matching `video-*-poster.webp` poster files
+- `hero-card-02.mp4` through `hero-card-04.mp4`
+- matching `hero-card-*-poster.webp` poster files
+- `dom-short-01.mp4` and `intro-montage-01.mp4`
 
 Original camera/export files are kept under:
 
