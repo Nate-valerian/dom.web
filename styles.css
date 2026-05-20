@@ -1218,7 +1218,7 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
 @media(max-width:640px){.contact-actions{grid-template-columns:1fr}.btn-contact-alt{width:100%}}
 
 .program-page{background:#07070d;color:var(--white)}
-.program-detail{min-height:100vh;padding:76px 56px 64px;position:relative;overflow:hidden}
+.program-detail{min-height:100vh;padding:46px 48px 46px;position:relative;overflow:hidden}
 .program-detail::before{
   content:'';
   position:absolute;
@@ -1229,31 +1229,31 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
     var(--ink);
   pointer-events:none;
 }
-.program-detail-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto}
-.program-detail-back{font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;margin-bottom:34px}
-.program-detail-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);gap:42px;align-items:end;margin-bottom:34px}
-.program-detail-title{font-size:clamp(38px,5vw,72px);font-weight:300;line-height:1.02;margin-bottom:22px}
+.program-detail-inner{position:relative;z-index:1;max-width:980px;margin:0 auto}
+.program-detail-back{font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;margin-bottom:22px}
+.program-detail-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:30px;align-items:end;margin-bottom:24px}
+.program-detail-title{font-size:clamp(30px,3.8vw,50px);font-weight:300;line-height:1.02;margin-bottom:14px}
 .program-detail-title em{font-style:italic;color:var(--gold)}
-.program-detail-copy{font-size:18px;line-height:1.85;color:var(--ash);font-weight:300;max-width:620px}
-.program-detail-panel{background:rgba(8,6,2,.72);border:1px solid rgba(201,168,108,.16);border-radius:var(--r-lg);padding:28px 28px;box-shadow:0 22px 70px rgba(0,0,0,.38)}
-.program-detail-panel h2{font-size:26px;font-weight:300;line-height:1.12;margin-bottom:20px}
-.program-detail-list{display:grid;gap:12px}
-.program-detail-list span{font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,108,.22);border-radius:40px;padding:10px 16px;background:rgba(201,168,108,.05)}
-.program-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
-.program-detail-card{background:rgba(8,6,2,.68);border:1px solid rgba(201,168,108,.1);border-radius:var(--r);padding:24px 22px}
-.program-detail-card strong{display:block;font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.program-detail-card p{font-size:15px;line-height:1.78;color:var(--ash);font-weight:300;margin:0}
+.program-detail-copy{font-size:14px;line-height:1.65;color:var(--ash);font-weight:300;max-width:540px}
+.program-detail-panel{background:rgba(8,6,2,.72);border:1px solid rgba(201,168,108,.16);border-radius:var(--r-lg);padding:20px 20px;box-shadow:0 18px 52px rgba(0,0,0,.34)}
+.program-detail-panel h2{font-size:21px;font-weight:300;line-height:1.12;margin-bottom:14px}
+.program-detail-list{display:grid;gap:8px}
+.program-detail-list span{font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,108,.22);border-radius:40px;padding:7px 12px;background:rgba(201,168,108,.05)}
+.program-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.program-detail-card{background:rgba(8,6,2,.68);border:1px solid rgba(201,168,108,.1);border-radius:var(--r);padding:18px 18px}
+.program-detail-card strong{display:block;font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.program-detail-card p{font-size:13px;line-height:1.58;color:var(--ash);font-weight:300;margin:0}
 .program-detail-actions{display:flex;gap:14px;flex-wrap:wrap}
 .program-detail-hero-media{align-items:center}
-.program-detail-media{margin:0;min-height:340px;border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(201,168,108,.14);box-shadow:0 24px 80px rgba(0,0,0,.42);background:rgba(8,6,2,.72)}
-.program-detail-media img{width:100%;height:100%;min-height:340px;display:block;object-fit:cover;filter:saturate(1.05) contrast(1.02)}
-.program-detail-split{display:grid;grid-template-columns:minmax(0,.92fr) minmax(320px,1fr);gap:14px;align-items:stretch;margin-bottom:30px}
-.program-detail-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.program-detail-gallery img{width:100%;height:100%;min-height:240px;display:block;object-fit:cover;border-radius:var(--r);border:1px solid rgba(201,168,108,.1);background:rgba(8,6,2,.68)}
+.program-detail-media{margin:0;min-height:250px;border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(201,168,108,.14);box-shadow:0 18px 56px rgba(0,0,0,.38);background:rgba(8,6,2,.72)}
+.program-detail-media img{width:100%;height:100%;min-height:250px;display:block;object-fit:cover;filter:saturate(1.05) contrast(1.02)}
+.program-detail-split{display:grid;grid-template-columns:minmax(0,.92fr) minmax(280px,.9fr);gap:10px;align-items:stretch;margin-bottom:22px}
+.program-detail-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.program-detail-gallery img{width:100%;height:100%;min-height:190px;display:block;object-fit:cover;border-radius:var(--r);border:1px solid rgba(201,168,108,.1);background:rgba(8,6,2,.68)}
 @media(max-width:900px){
-  .program-detail{padding:64px 24px 52px}
+  .program-detail{padding:46px 18px 42px}
   .program-detail-hero,.program-detail-grid,.program-detail-split{grid-template-columns:1fr}
-  .program-detail-hero{gap:34px}
-  .program-detail-media,.program-detail-media img{min-height:280px}
-  .program-detail-gallery img{min-height:190px}
+  .program-detail-hero{gap:22px}
+  .program-detail-media,.program-detail-media img{min-height:220px}
+  .program-detail-gallery img{min-height:160px}
 }
