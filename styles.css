@@ -1268,29 +1268,29 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
     margin-bottom:0;
     padding:8px 0;
   }
-  .program-detail-hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(300px,.72fr);gap:16px;align-items:center;margin-bottom:9px}
+  .program-detail-hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(300px,.72fr);gap:16px;align-items:center;margin-bottom:0}
   .program-detail-media{height:240px;min-height:0}
   .program-detail-media img{height:100%;min-height:0}
   .program-detail-title{font-size:clamp(30px,3vw,48px);margin-bottom:9px}
   .program-detail-copy{font-size:12px;line-height:1.5;max-width:540px}
-  .program-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 8px}
+  .program-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:-24px 0 8px}
   .program-detail-card{
-    min-height:86px;
-    padding:12px 15px;
+    min-height:118px;
+    padding:16px 18px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     background:linear-gradient(145deg,rgba(12,8,3,.84),rgba(8,6,2,.62));
     box-shadow:0 18px 44px rgba(0,0,0,.22);
   }
-  .program-detail-card strong{margin-bottom:6px}
-  .program-detail-card p{font-size:11px;line-height:1.42}
-  .program-detail-split{display:grid;grid-template-columns:minmax(300px,.92fr) minmax(260px,.72fr);gap:8px;margin:0 0 8px}
-  .program-detail-panel{padding:13px 16px}
-  .program-detail-panel h2{font-size:18px;margin-bottom:8px}
-  .program-detail-list{gap:5px}
-  .program-detail-list span{font-size:7px;padding:5px 9px}
+  .program-detail-card strong{margin-bottom:8px}
+  .program-detail-card p{font-size:12px;line-height:1.48}
+  .program-detail-split{display:grid;grid-template-columns:minmax(300px,.92fr) minmax(260px,.72fr);gap:8px;margin:-10px 0 8px}
+  .program-detail-panel{padding:16px 18px}
+  .program-detail-panel h2{font-size:20px;margin-bottom:10px}
+  .program-detail-list{gap:6px}
+  .program-detail-list span{font-size:7px;padding:6px 10px}
   .program-detail-gallery{gap:9px}
-  .program-detail-gallery img{height:104px;min-height:0}
+  .program-detail-gallery img{height:148px;min-height:0}
   .program-detail-actions{justify-content:flex-end;gap:10px;margin-top:0}
 }
