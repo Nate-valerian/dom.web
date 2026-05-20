@@ -1258,15 +1258,15 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   .program-detail-gallery img{min-height:160px}
 }
 @media(min-width:1100px){
-  .program-detail{min-height:100vh;padding:56px 42px 28px;display:flex;align-items:center;overflow:auto}
+  .program-detail{min-height:100vh;padding:64px 42px 28px;display:flex;align-items:flex-start;overflow:auto}
   .program-detail-inner{
     width:100%;
     max-width:1160px;
     display:grid;
     grid-template-columns:minmax(0,1.06fr) minmax(300px,.72fr);
     grid-template-rows:auto auto auto auto;
-    gap:11px 16px;
-    align-content:center;
+    gap:12px 16px;
+    align-content:start;
   }
   .program-detail-back{
     position:fixed;
@@ -1279,7 +1279,7 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   .program-detail-hero{display:contents}
   .program-detail-hero > div:not(.program-detail-panel){grid-column:1;grid-row:2;align-self:center}
   .program-detail-hero > .program-detail-panel{grid-column:2;grid-row:2;align-self:center}
-  .program-detail-media{grid-column:2;grid-row:2;align-self:center;height:clamp(210px,27vh,280px);min-height:0}
+  .program-detail-media{grid-column:2;grid-row:2;align-self:center;height:240px;min-height:0}
   .program-detail-media img{height:100%;min-height:0}
   .program-detail-title{font-size:clamp(30px,3vw,48px);margin-bottom:9px}
   .program-detail-copy{font-size:12px;line-height:1.5;max-width:540px}
@@ -1288,12 +1288,12 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
     grid-row:3;
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:9px;
+    gap:8px;
     margin:0;
   }
   .program-detail-card{
-    min-height:92px;
-    padding:13px 16px;
+    min-height:86px;
+    padding:12px 15px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -1307,7 +1307,7 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
     grid-row:4;
     display:grid;
     grid-template-columns:minmax(300px,.92fr) minmax(260px,.72fr);
-    gap:9px;
+    gap:8px;
     margin:0;
     align-self:center;
   }
@@ -1316,6 +1316,6 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   .program-detail-list{gap:5px}
   .program-detail-list span{font-size:7px;padding:5px 9px}
   .program-detail-gallery{gap:9px}
-  .program-detail-gallery img{height:118px;min-height:0}
+  .program-detail-gallery img{height:104px;min-height:0}
   .program-detail-actions{grid-column:2;grid-row:4;align-self:center;justify-self:end;gap:10px;margin-top:0}
 }
