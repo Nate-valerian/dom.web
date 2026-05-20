@@ -1,15 +1,39 @@
 const CONTACT_LINKS = {
-  whatsapp: 'https://wa.me/79850932711',
+  max: 'https://max.ru/domwomenspace',
   telegram: 'https://t.me/domwomenspace',
-  max: 'https://max.ru/domwomenspace'
+  whatsapp: 'https://wa.me/79850932711'
 };
 
+/* ── Clipboard + toast helpers (module-level; used by form AND by any a[data-msg]) ── */
+function copyToClipboard(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);
+  var ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;opacity:0;pointer-events:none;';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+  return Promise.resolve();
+}
+function showToast(text){
+  var t=document.getElementById('formToast');
+  if(!t){
+    t=document.createElement('div');t.id='formToast';
+    t.style.cssText='position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);background:rgba(8,6,2,.96);border:1px solid rgba(201,168,108,.4);color:#f4ede0;padding:14px 26px;border-radius:40px;font-family:Raleway,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;z-index:10000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 12px 36px rgba(0,0,0,.5);';
+    document.body.appendChild(t);
+  }
+  t.textContent=text;
+  requestAnimationFrame(function(){t.style.opacity='1';t.style.transform='translate(-50%,0)';});
+  clearTimeout(t._h);
+  t._h=setTimeout(function(){t.style.opacity='0';t.style.transform='translate(-50%,20px)';},2600);
+}
+
+/* ── Contact form: MAX primary, Telegram + WhatsApp secondary. Copies message on submit. ── */
 (function(){
   var form=document.getElementById('contactForm');
-  var whatsApp=document.getElementById('contactSubmit');
+  var primary=document.getElementById('contactSubmit');
   var telegram=document.getElementById('telegramContact');
-  var max=document.getElementById('maxContact');
-  if(!form||!whatsApp)return;
+  var whatsapp=document.getElementById('whatsappContact');
+  if(!form||!primary)return;
   function val(id){var el=document.getElementById(id);return el&&el.value.trim()?el.value.trim():'';}
   function hasFormData(){return !!(val('contactName')||val('contactPhone')||val('contactProgram')||val('contactDate')||val('contactPromo'));}
   function message(){
@@ -23,43 +47,33 @@ const CONTACT_LINKS = {
     return lines.join('\n');
   }
   function buildLinks(){
-    whatsApp.href=CONTACT_LINKS.whatsapp+'?text='+encodeURIComponent(message());
+    primary.href=CONTACT_LINKS.max;
     if(telegram)telegram.href=CONTACT_LINKS.telegram;
-    if(max)max.href=CONTACT_LINKS.max;
-  }
-  function copyToClipboard(text){
-    if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);
-    var ta=document.createElement('textarea');
-    ta.value=text;ta.style.cssText='position:fixed;opacity:0;pointer-events:none;';
-    document.body.appendChild(ta);ta.select();
-    try{document.execCommand('copy');}catch(e){}
-    document.body.removeChild(ta);
-    return Promise.resolve();
-  }
-  function showToast(text){
-    var t=document.getElementById('formToast');
-    if(!t){
-      t=document.createElement('div');t.id='formToast';
-      t.style.cssText='position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);background:rgba(8,6,2,.96);border:1px solid rgba(201,168,108,.4);color:#f4ede0;padding:14px 26px;border-radius:40px;font-family:Raleway,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;z-index:10000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 12px 36px rgba(0,0,0,.5);';
-      document.body.appendChild(t);
-    }
-    t.textContent=text;
-    requestAnimationFrame(function(){t.style.opacity='1';t.style.transform='translate(-50%,0)';});
-    clearTimeout(t._h);
-    t._h=setTimeout(function(){t.style.opacity='0';t.style.transform='translate(-50%,20px)';},2600);
+    // WhatsApp DOES support ?text= prefill — premium UX, no paste needed
+    if(whatsapp)whatsapp.href=CONTACT_LINKS.whatsapp+(hasFormData()?'?text='+encodeURIComponent(message()):'');
   }
   function altClick(){
-    if(!hasFormData())return; // no data, let normal link open
+    if(!hasFormData())return;
     copyToClipboard(message());
     showToast('Сообщение скопировано — вставьте в чат');
   }
   form.addEventListener('input',buildLinks);
-  form.addEventListener('submit',function(e){e.preventDefault();buildLinks();window.open(whatsApp.href,'_blank','noopener');});
-  whatsApp.addEventListener('click',buildLinks);
+  form.addEventListener('submit',function(e){e.preventDefault();altClick();window.open(primary.href,'_blank','noopener');});
+  primary.addEventListener('click',altClick);
   if(telegram)telegram.addEventListener('click',altClick);
-  if(max)max.addEventListener('click',altClick);
+  if(whatsapp)whatsapp.addEventListener('click',buildLinks); // refresh href right before navigation
   buildLinks();
 })();
+
+/* ── Global handler: any <a data-msg="..."> copies its message to clipboard on click ── */
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[data-msg]');
+  if (!a) return;
+  var msg = a.getAttribute('data-msg');
+  if (!msg) return;
+  copyToClipboard(msg);
+  showToast('Сообщение скопировано — вставьте в чат');
+});
 
 /* ── CURSOR ── */
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');

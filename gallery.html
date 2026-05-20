@@ -18,6 +18,7 @@
 <nav id="nav">
   <a href="index.html#hero" class="logo-slot ls-nav" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></a>
   <ul class="nav-links">
+    <li><a href="index.html#hero">Главная</a></li>
     <li><a href="index.html#chooser">Подобрать</a></li>
     <li><a href="index.html#programs">Программы</a></li>
     <li><a href="index.html#featured-media">Фото и видео</a></li>
@@ -25,7 +26,7 @@
     <li><a href="index.html#corporate">Корпоративам</a></li>
     <li><a href="index.html#contact">Контакты</a></li>
   </ul>
-  <a href="https://wa.me/79850932711" target="_blank" class="nav-btn">Записаться</a>
+  <a href="https://max.ru/domwomenspace" target="_blank" class="nav-btn">Записаться</a>
 
   <button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Меню">
     <span></span><span></span><span></span>
@@ -33,6 +34,7 @@
 
   <div class="mob-menu" id="mobMenu">
     <button class="mob-menu-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
+    <a href="index.html#hero" onclick="document.getElementById('mobMenu').classList.remove('open')">Главная</a>
     <a href="index.html#chooser" onclick="document.getElementById('mobMenu').classList.remove('open')">Подобрать формат</a>
     <a href="index.html#programs" onclick="document.getElementById('mobMenu').classList.remove('open')">Программы</a>
     <a href="index.html#featured-media" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
