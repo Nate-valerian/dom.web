@@ -1,68 +1,96 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/webp" href="/assets/brand/logo.webp">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Пробуждение женских архетипов — ДОМ</title>
 <meta name="description" content="Глубинная практика самопознания и работы с ролями. Каждая участница исследует свои архетипы и видит собственную силу в зеркале группы.">
+<link rel="canonical" href="https://domwomenspace.ru/programs/zhenskie-arkhetipy.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Пробуждение женских архетипов — ДОМ">
+<meta property="og:description" content="Глубинная практика самопознания и работы с ролями. От 8 500 ₽ с гостя.">
+<meta property="og:url" content="https://domwomenspace.ru/programs/zhenskie-arkhetipy.html">
+<meta property="og:image" content="https://domwomenspace.ru/assets/gallery/photo-13.webp">
+<meta property="og:site_name" content="ДОМ · Женское пространство">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Пробуждение женских архетипов — ДОМ">
+<meta name="twitter:description" content="Глубинная практика самопознания. От 8 500 ₽ с гостя.">
+<meta name="twitter:image" content="https://domwomenspace.ru/assets/gallery/photo-13.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Пробуждение женских архетипов","description":"Глубинная практика самопознания и работы с ролями.","image":"https://domwomenspace.ru/assets/gallery/photo-13.webp","provider":{"@type":"LocalBusiness","name":"ДОМ · Женское пространство","url":"https://domwomenspace.ru"},"offers":{"@type":"Offer","price":"8500","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://domwomenspace.ru/programs/zhenskie-arkhetipy.html"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../programs.css">
 </head>
-<body class="program-page">
-<main class="program-detail">
-  <div class="program-detail-inner">
-    <a class="program-detail-back" href="../index.html#acc-arkhetipy">← к программам</a>
+<body class="pg-page">
 
-    <section class="program-detail-hero program-detail-hero-media">
-      <div>
-        <div class="s-label">Женская трансформация</div>
-        <h1 class="program-detail-title">Пробуждение <em>женских архетипов</em></h1>
-        <p class="program-detail-copy">Глубинная практика самопознания и работы с ролями. Каждая участница исследует свои архетипы и видит собственную силу в зеркале группы.</p>
+<canvas id="bg-canvas"></canvas>
+<canvas id="sparkle-canvas"></canvas>
+<div id="cur"></div>
+<div id="cur2"></div>
+<div class="particles" id="particles"></div>
+
+<main class="pg-shell">
+  <a class="pg-back" href="../index.html#acc-arkhetipy">← к программам</a>
+
+  <section class="pg-hero">
+    <div class="pg-hero-text">
+      <div class="pg-eyebrow">Женская трансформация</div>
+      <h1 class="pg-title">Пробуждение <em>женских архетипов</em></h1>
+      <div class="pg-price">
+        <span class="pg-price-from">от</span>
+        <span class="pg-price-amount">8 500 ₽</span>
+        <span class="pg-price-note">с гостя</span>
       </div>
-      <figure class="program-detail-media">
-        <img src="../assets/gallery/photo-13.webp" alt="Пробуждение женских архетипов в ДОМе">
-      </figure>
-    </section>
-
-    <section class="program-detail-grid">
-      <article class="program-detail-card">
-        <strong>Для кого</strong>
-        <p>Для женских мероприятий, закрытых групп и встреч, где хочется не только красоты, но и внутреннего содержания.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Как проходит</strong>
-        <p>Практика соединяет разговор, символы, телесное внимание и групповое отражение. Ведущий помогает участницам бережно увидеть свои сильные стороны.</p>
-      </article>
-      <article class="program-detail-card">
-        <strong>Что останется</strong>
-        <p>Появляется больше понимания себя, своих ролей, границ и энергии. Формат хорошо работает как центральная часть женского события.</p>
-      </article>
-    </section>
-
-    <section class="program-detail-split">
-      <div class="program-detail-panel">
-        <h2>В программу входит</h2>
-        <div class="program-detail-list">
-          <span>архетипы</span>
-          <span>женский круг</span>
-          <span>самопознание</span>
-          <span>120 минут</span>
-          <span>5-15 человек</span>
-          <span>глубинный формат</span>
-        </div>
-      </div>
-      <div class="program-detail-gallery">
-        <img src="../assets/gallery/photo-21.webp" alt="Детали программы Пробуждение женских архетипов">
-        <img src="../assets/gallery/photo-05.webp" alt="Атмосфера ДОМа">
-      </div>
-    </section>
-
-    <div class="program-detail-actions">
-      <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Пробуждение женских архетипов" target="_blank" rel="noopener">Записаться</a>
-      <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
+      <p class="pg-desc">Глубинная практика самопознания и работы с ролями. Каждая участница исследует свои архетипы и видит собственную силу в зеркале группы.</p>
     </div>
+    <figure class="pg-hero-media">
+      <img src="../assets/gallery/photo-13.webp" alt="Пробуждение женских архетипов в ДОМе">
+    </figure>
+  </section>
+
+  <section class="pg-cards">
+    <article class="pg-card">
+      <strong>Для кого</strong>
+      <p>Для женских мероприятий, закрытых групп и встреч, где хочется не только красоты, но и внутреннего содержания.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Как проходит</strong>
+      <p>Практика соединяет разговор, символы, телесное внимание и групповое отражение. Ведущий помогает участницам бережно увидеть свои сильные стороны.</p>
+    </article>
+    <article class="pg-card">
+      <strong>Что останется</strong>
+      <p>Появляется больше понимания себя, своих ролей, границ и энергии. Формат хорошо работает как центральная часть женского события.</p>
+    </article>
+  </section>
+
+  <section class="pg-detail-row">
+    <div class="pg-panel">
+      <h2>В программу входит</h2>
+      <div class="pg-tags">
+        <span>архетипы</span>
+        <span>женский круг</span>
+        <span>самопознание</span>
+        <span>120 минут</span>
+        <span>5-15 человек</span>
+        <span>глубинный формат</span>
+      </div>
+    </div>
+    <div class="pg-gallery">
+      <img src="../assets/gallery/photo-21.webp" alt="Детали программы Пробуждение женских архетипов">
+      <img src="../assets/gallery/photo-05.webp" alt="Атмосфера ДОМа">
+    </div>
+  </section>
+
+  <div class="pg-actions">
+    <a class="btn-p" href="https://wa.me/79850932711?text=Хочу записаться: Пробуждение женских архетипов" target="_blank" rel="noopener">Записаться</a>
+    <a class="btn-g" href="../index.html#contact">Задать вопрос</a>
   </div>
+  <section class="pg-related"></section>
 </main>
+
+<script src="../main.js" defer></script>
+<script src="../programs-related.js" defer></script>
 </body>
 </html>
-

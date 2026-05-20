@@ -11,6 +11,7 @@ const CONTACT_LINKS = {
   var max=document.getElementById('maxContact');
   if(!form||!whatsApp)return;
   function val(id){var el=document.getElementById(id);return el&&el.value.trim()?el.value.trim():'';}
+  function hasFormData(){return !!(val('contactName')||val('contactPhone')||val('contactProgram')||val('contactDate')||val('contactPromo'));}
   function message(){
     var lines=['Здравствуйте! Хочу записаться в ДОМ.'];
     var name=val('contactName'), phone=val('contactPhone'), program=val('contactProgram'), date=val('contactDate'), promo=val('contactPromo');
@@ -26,9 +27,37 @@ const CONTACT_LINKS = {
     if(telegram)telegram.href=CONTACT_LINKS.telegram;
     if(max)max.href=CONTACT_LINKS.max;
   }
+  function copyToClipboard(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.style.cssText='position:fixed;opacity:0;pointer-events:none;';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+  function showToast(text){
+    var t=document.getElementById('formToast');
+    if(!t){
+      t=document.createElement('div');t.id='formToast';
+      t.style.cssText='position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);background:rgba(8,6,2,.96);border:1px solid rgba(201,168,108,.4);color:#f4ede0;padding:14px 26px;border-radius:40px;font-family:Raleway,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;z-index:10000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 12px 36px rgba(0,0,0,.5);';
+      document.body.appendChild(t);
+    }
+    t.textContent=text;
+    requestAnimationFrame(function(){t.style.opacity='1';t.style.transform='translate(-50%,0)';});
+    clearTimeout(t._h);
+    t._h=setTimeout(function(){t.style.opacity='0';t.style.transform='translate(-50%,20px)';},2600);
+  }
+  function altClick(){
+    if(!hasFormData())return; // no data, let normal link open
+    copyToClipboard(message());
+    showToast('Сообщение скопировано — вставьте в чат');
+  }
   form.addEventListener('input',buildLinks);
   form.addEventListener('submit',function(e){e.preventDefault();buildLinks();window.open(whatsApp.href,'_blank','noopener');});
   whatsApp.addEventListener('click',buildLinks);
+  if(telegram)telegram.addEventListener('click',altClick);
+  if(max)max.addEventListener('click',altClick);
   buildLinks();
 })();
 
@@ -103,7 +132,7 @@ const pp=document.getElementById('particles');
 for(let i=0;i<38;i++){const d=document.createElement('div');d.className='p';d.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*2.5+.5}px;height:${Math.random()*2.5+.5}px;animation-duration:${Math.random()*16+10}s;animation-delay:${Math.random()*16}s`;pp.appendChild(d)}
 
 /* ── NAV SCROLL ── */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+window.addEventListener('scroll',()=>{var n=document.getElementById('nav');if(n)n.classList.toggle('scrolled',scrollY>60);});
 
 /* ── FADE UP ── */
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.06});
@@ -111,9 +140,10 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 
 /* ── TABS ── */
 function switchTab(id,btn){
-  document.querySelectorAll('.format-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.format-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
   document.querySelectorAll('.format-pane').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
   document.getElementById('pane-'+id).classList.add('active');
 }
 
@@ -124,13 +154,22 @@ function switchTab(id,btn){
 ══════════════════════════════════ */
 (function(){
   const c = document.getElementById('bg-canvas');
+  if (!c) return;
   const g = c.getContext('2d');
   let W, H;
+  const SCALE = 0.5; // render at half resolution; CSS scales it back up (texture is soft so loss is invisible)
 
   function resize(){
-    W = c.width = window.innerWidth;
-    H = c.height = window.innerHeight;
+    W = c.width = Math.max(1, Math.floor(window.innerWidth * SCALE));
+    H = c.height = Math.max(1, Math.floor(window.innerHeight * SCALE));
+    c.style.width = window.innerWidth + 'px';
+    c.style.height = window.innerHeight + 'px';
     paint();
+  }
+  let resizeTimer;
+  function debouncedResize(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 180);
   }
 
   function noise(x, y, seed){
@@ -243,7 +282,7 @@ function switchTab(id,btn){
     g.fillStyle=g3; g.fillRect(0,0,W,H);
   }
 
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', debouncedResize);
   resize();
 })();
 
@@ -255,10 +294,68 @@ function toggleAcc(slug){
   // close all in same pane
   var pane = item.closest('.format-pane');
   pane.querySelectorAll('.prog-acc-item.open').forEach(function(el){
-    if(el !== item) el.classList.remove('open');
+    if(el !== item){
+      el.classList.remove('open');
+      var h = el.querySelector('.prog-acc-header');
+      if (h) h.setAttribute('aria-expanded','false');
+    }
   });
   item.classList.toggle('open', !isOpen);
+  var header = item.querySelector('.prog-acc-header');
+  if (header) header.setAttribute('aria-expanded', String(!isOpen));
 }
+
+/* Accessibility init: roles + keyboard support for tabs and accordions */
+(function(){
+  function initA11y(){
+    document.querySelectorAll('.prog-acc-header').forEach(function(h){
+      h.setAttribute('role','button');
+      h.setAttribute('tabindex','0');
+      var item = h.closest('.prog-acc-item');
+      h.setAttribute('aria-expanded', item && item.classList.contains('open') ? 'true' : 'false');
+      h.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); h.click(); }
+      });
+    });
+    var tabsContainer = document.querySelector('.format-tabs');
+    if (tabsContainer) tabsContainer.setAttribute('role','tablist');
+    document.querySelectorAll('.format-tab').forEach(function(t){
+      t.setAttribute('role','tab');
+      t.setAttribute('aria-selected', t.classList.contains('active') ? 'true' : 'false');
+    });
+    document.querySelectorAll('.format-pane').forEach(function(p){
+      p.setAttribute('role','tabpanel');
+      p.setAttribute('tabindex','0');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initA11y);
+  else initA11y();
+})();
+
+/* Auto-open accordion when arriving via #acc-xxxx hash (from program detail pages) */
+function openAccFromHash(){
+  var hash = window.location.hash;
+  if(!hash || hash.indexOf('#acc-') !== 0) return;
+  var item = document.getElementById(hash.slice(1));
+  if(!item) return;
+  var pane = item.closest('.format-pane');
+  if(pane){
+    var paneSuffix = pane.id.replace('pane-','');
+    document.querySelectorAll('.format-pane').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.format-tab').forEach(function(t){t.classList.remove('active');});
+    pane.classList.add('active');
+    document.querySelectorAll('.format-tab').forEach(function(t){
+      if((t.getAttribute('onclick')||'').indexOf("'"+paneSuffix+"'")>=0) t.classList.add('active');
+    });
+    pane.querySelectorAll('.prog-acc-item.open').forEach(function(el){
+      if(el !== item) el.classList.remove('open');
+    });
+  }
+  item.classList.add('open');
+  setTimeout(function(){item.scrollIntoView({behavior:'smooth', block:'start'});}, 120);
+}
+window.addEventListener('DOMContentLoaded', openAccFromHash);
+window.addEventListener('hashchange', openAccFromHash);
 
 (function(){
   document.querySelectorAll('.media-card video source').forEach(function(source){
@@ -282,7 +379,7 @@ function ckDecline(){try{localStorage.setItem('dom_ck','0');}catch(e){}document.
   var consent=null;
   try{consent=localStorage.getItem('dom_ck');}catch(e){}
   if(consent===null){
-    setTimeout(function(){document.getElementById('ckBanner').classList.add('show');},2000);
+    setTimeout(function(){var b=document.getElementById('ckBanner');if(b)b.classList.add('show');},2000);
   }
 })();
 
