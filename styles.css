@@ -71,6 +71,10 @@ nav.scrolled{background:rgba(5,3,1,0.95);backdrop-filter:blur(14px);border-botto
 .nav-links a:hover{color:var(--gold)}
 .nav-btn{font-family:'Raleway',sans-serif;font-weight:300;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:11px 26px;border-radius:40px;text-decoration:none;transition:opacity .3s,transform .3s}
 .nav-btn:hover{opacity:.85;transform:translateY(-1px)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.nav-social{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,108,.35);color:var(--gold);text-decoration:none;background:transparent;transition:background .3s,color .3s,transform .3s,border-color .3s}
+.nav-social:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:translateY(-1px)}
+.nav-social svg{display:block}
 
 /* ── HERO ── */
 .hero{position:relative;min-height:100vh;display:grid;grid-template-columns:minmax(820px,1.08fr) minmax(420px,.92fr);align-items:center;gap:clamp(22px,2.4vw,48px);overflow:hidden;padding:86px 68px 72px}
@@ -733,6 +737,9 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
 }
 
 @media(max-width:760px){
+  .format-banner{flex-direction:column;align-items:flex-start;gap:18px;padding:24px 26px}
+  .fb-text{width:100%}
+  .fb-badge{align-self:flex-start}
   .fb-side{align-items:flex-start;width:100%}
   .fb-actions{width:100%;justify-content:flex-start}
 }
@@ -969,6 +976,9 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   nav#nav{padding:14px 16px}
   .nav-links{display:none}
   .nav-btn{padding:9px 18px;font-size:8px}
+  .nav-cta{gap:8px}
+  .nav-social{width:32px;height:32px}
+  .nav-social svg{width:14px;height:14px}
 
   /* HERO */
   .hero{min-height:100svh;align-items:start;align-content:start;padding:92px 20px 60px}
