@@ -402,6 +402,20 @@ window.addEventListener('hashchange', openAccFromHash);
   });
 })();
 
+/* ── Pause autoplay videos while off-screen (logo loops + hero cards) so the
+   browser isn't decoding several videos at once below the fold ── */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var v=entry.target;
+      if(entry.isIntersecting){ if(v.paused)v.play().catch(function(){}); }
+      else if(!v.paused){ v.pause(); }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('video[autoplay]').forEach(function(v){io.observe(v);});
+})();
+
 
 
 
