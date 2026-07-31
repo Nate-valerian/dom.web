@@ -60,12 +60,30 @@ function showToast(text){
     copyToClipboard(message());
     showToast('Сообщение скопировано — вставьте в чат');
   }
+  var leadSent=false;
+  function captureLead(){
+    // Server-side capture, fire-and-forget: the visitor's chosen app (MAX/Telegram/
+    // WhatsApp/Email) stays the primary UX, but the lead is saved even if they never
+    // complete the send step there. Honeypot field lets bots through the UI but the
+    // server drops anything with it filled.
+    if(!hasFormData()||leadSent||val('contactWebsite'))return;
+    leadSent=true;
+    var body=new URLSearchParams({
+      name:val('contactName'),
+      contact:val('contactPhone'),
+      program:val('contactProgram'),
+      date:val('contactDate'),
+      promo:val('contactPromo'),
+      website:val('contactWebsite')
+    });
+    fetch('send-contact.php',{method:'POST',body:body}).catch(function(){});
+  }
   form.addEventListener('input',buildLinks);
-  form.addEventListener('submit',function(e){e.preventDefault();altClick();window.open(primary.href,'_blank','noopener');});
-  primary.addEventListener('click',altClick);
-  if(telegram)telegram.addEventListener('click',altClick);
-  if(whatsapp)whatsapp.addEventListener('click',buildLinks); // refresh href right before navigation
-  if(email)email.addEventListener('click',buildLinks); // refresh href right before navigation
+  form.addEventListener('submit',function(e){e.preventDefault();altClick();captureLead();window.open(primary.href,'_blank','noopener');});
+  primary.addEventListener('click',function(){altClick();captureLead();});
+  if(telegram)telegram.addEventListener('click',function(){altClick();captureLead();});
+  if(whatsapp)whatsapp.addEventListener('click',function(){buildLinks();captureLead();}); // refresh href right before navigation
+  if(email)email.addEventListener('click',function(){buildLinks();captureLead();}); // refresh href right before navigation
   buildLinks();
 })();
 
