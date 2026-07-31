@@ -433,7 +433,7 @@ function loadMetrika(){
     for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}
     k=e.createElement(t);k.id='ym-script';a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
   })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+YM_ID,'ym');
-  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',accurateTrackBounce:true,trackLinks:true});
+  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
 }
 
 function ckAccept(){try{localStorage.setItem('dom_ck','1');}catch(e){}document.getElementById('ckBanner').classList.remove('show');loadMetrika();}
