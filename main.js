@@ -33,6 +33,7 @@ function showToast(text){
   var primary=document.getElementById('contactSubmit');
   var telegram=document.getElementById('telegramContact');
   var whatsapp=document.getElementById('whatsappContact');
+  var email=document.getElementById('emailContact');
   if(!form||!primary)return;
   function val(id){var el=document.getElementById(id);return el&&el.value.trim()?el.value.trim():'';}
   function hasFormData(){return !!(val('contactName')||val('contactPhone')||val('contactProgram')||val('contactDate')||val('contactPromo'));}
@@ -51,6 +52,8 @@ function showToast(text){
     if(telegram)telegram.href=CONTACT_LINKS.telegram;
     // WhatsApp DOES support ?text= prefill — premium UX, no paste needed
     if(whatsapp)whatsapp.href=CONTACT_LINKS.whatsapp+(hasFormData()?'?text='+encodeURIComponent(message()):'');
+    // Email also supports prefill via mailto — durable fallback if clipboard/paste flow is abandoned
+    if(email)email.href='mailto:domwomensspase@yandex.ru'+(hasFormData()?'?subject='+encodeURIComponent('Заявка с сайта ДОМ')+'&body='+encodeURIComponent(message()):'');
   }
   function altClick(){
     if(!hasFormData())return;
@@ -62,6 +65,7 @@ function showToast(text){
   primary.addEventListener('click',altClick);
   if(telegram)telegram.addEventListener('click',altClick);
   if(whatsapp)whatsapp.addEventListener('click',buildLinks); // refresh href right before navigation
+  if(email)email.addEventListener('click',buildLinks); // refresh href right before navigation
   buildLinks();
 })();
 
