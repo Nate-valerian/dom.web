@@ -1,0 +1,11 @@
+# Editor/tooling artifacts
+.history/
+.edge-cdp-profile/
+.edge-check-profile/
+
+# Raw camera exports — keep locally, never commit (large binary originals)
+assets/gallery/_source/
+
+# Ad-hoc local backups / QA screenshots
+gallery.zip
+screenshots/
