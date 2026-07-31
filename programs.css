@@ -114,7 +114,7 @@
   z-index: 1;
   max-width: 1160px;
   margin: 0 auto;
-  padding: 16px 42px 22px;
+  padding: 120px 42px 22px;
 }
 
 .pg-back {
@@ -422,7 +422,7 @@
 
 /* Tablet — collapse related-grid from 3 cols to 2 first */
 @media (max-width: 900px) {
-  .pg-shell { padding: 22px 22px 32px; }
+  .pg-shell { padding: 104px 22px 32px; }
   .pg-hero,
   .pg-cards,
   .pg-detail-row,
@@ -445,7 +445,7 @@
   .pg-related-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
-  .pg-shell { padding: 18px 16px 28px; }
+  .pg-shell { padding: 92px 16px 28px; }
 }
 /* Safeguard: never let long title words overflow the card */
 .pg-related-title { word-break: break-word; overflow-wrap: anywhere; }
