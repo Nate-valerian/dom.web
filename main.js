@@ -409,12 +409,27 @@ window.addEventListener('hashchange', openAccFromHash);
 
 
 
-function ckAccept(){try{localStorage.setItem('dom_ck','1');}catch(e){}document.getElementById('ckBanner').classList.remove('show');}
+/* ── Yandex Metrika: only loaded after cookie consent, never unconditionally ── */
+var YM_ID=111198517;
+function loadMetrika(){
+  if(window.ym||document.getElementById('ym-script'))return;
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}
+    k=e.createElement(t);k.id='ym-script';a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
+  })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+YM_ID,'ym');
+  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',accurateTrackBounce:true,trackLinks:true});
+}
+
+function ckAccept(){try{localStorage.setItem('dom_ck','1');}catch(e){}document.getElementById('ckBanner').classList.remove('show');loadMetrika();}
 function ckDecline(){try{localStorage.setItem('dom_ck','0');}catch(e){}document.getElementById('ckBanner').classList.remove('show');}
 (function(){
   var consent=null;
   try{consent=localStorage.getItem('dom_ck');}catch(e){}
-  if(consent===null){
+  if(consent==='1'){
+    loadMetrika();
+  }else if(consent===null){
     setTimeout(function(){var b=document.getElementById('ckBanner');if(b)b.classList.add('show');},2000);
   }
 })();
