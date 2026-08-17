@@ -1,6 +1,6 @@
 const CONTACT_LINKS = {
   max: 'https://max.ru/u/f9LHodD0cOIYWLYHDr2TB64N3hgIGiUyBsXxON2rEpXNc_m51x_JQDUIpS4',
-  telegram: 'https://t.me/domwomenspace',
+  telegram: 'https://t.me/+79850932711',
   whatsapp: 'https://wa.me/79850932711'
 };
 
