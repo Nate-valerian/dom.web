@@ -1,4 +1,4 @@
-/* Extended 5D meditation program page. */
+/* Immersive program layout shared by the meditation and date pages. */
 .med-page .pg-shell{padding-top:144px;padding-bottom:64px}
 .med-page #bg-canvas{opacity:.28}
 .med-page .pg-back{min-height:44px;align-items:center;margin-bottom:20px}
@@ -10,6 +10,10 @@
 .med-copy{font-size:18px;line-height:1.75;font-weight:300;color:rgba(244,237,224,.8)}
 .med-hero-figure{border-radius:24px;border:1px solid var(--gold-dim);overflow:hidden;background:var(--ink)}
 .med-hero-figure img{display:block;width:100%;height:auto}
+.date-page .med-hero-figure>a{display:block}
+.date-page .med-hero-figure img{aspect-ratio:3/4;object-fit:cover;object-position:50% 62%}
+.date-page .med-hero-figure figcaption a{display:inline-flex;align-items:center;min-height:44px;color:var(--gold2);text-underline-offset:4px}
+.date-page .med-hero-figure>a:focus-visible{outline:2px solid var(--gold2);outline-offset:-4px}
 .med-hero-figure figcaption,.med-media-card figcaption{font-size:15px;line-height:1.5;color:var(--ash);padding:14px 18px}
 .med-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:28px 0}
 .med-facts>div{padding:15px 12px;border:1px solid var(--gold-dim);border-radius:16px;background:rgba(12,12,23,.8)}
