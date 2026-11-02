@@ -4,6 +4,44 @@ const CONTACT_LINKS = {
   whatsapp: 'https://wa.me/79850932711'
 };
 
+/* Keep the fixed menu outside the header's backdrop-filter containing block. */
+function setMobileMenu(isOpen,restoreFocus){
+  var menu=document.getElementById('mobMenu');
+  var trigger=document.querySelector('.mob-menu-btn');
+  if(!menu||!trigger)return;
+  menu.classList.toggle('open',isOpen);
+  menu.setAttribute('aria-hidden',String(!isOpen));
+  trigger.setAttribute('aria-expanded',String(isOpen));
+  document.documentElement.classList.toggle('menu-open',isOpen);
+  if(isOpen)menu.querySelector('.mob-menu-close').focus({preventScroll:true});
+  else if(restoreFocus!==false)trigger.focus({preventScroll:true});
+}
+(function(){
+  var menu=document.getElementById('mobMenu');
+  var trigger=document.querySelector('.mob-menu-btn');
+  if(!menu||!trigger)return;
+  document.body.appendChild(menu);
+  menu.setAttribute('role','dialog');
+  menu.setAttribute('aria-modal','true');
+  menu.setAttribute('aria-label','Навигация');
+  menu.setAttribute('aria-hidden','true');
+  trigger.setAttribute('aria-controls','mobMenu');
+  trigger.setAttribute('aria-expanded','false');
+  menu.querySelector('.mob-menu-close').setAttribute('aria-label','Закрыть меню');
+  document.addEventListener('keydown',function(e){
+    if(!menu.classList.contains('open'))return;
+    if(e.key==='Escape'){setMobileMenu(false);return;}
+    if(e.key!=='Tab')return;
+    var controls=menu.querySelectorAll('a,button');
+    var first=controls[0],last=controls[controls.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  });
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>960&&menu.classList.contains('open'))setMobileMenu(false,false);
+  });
+})();
+
 /* Select the destination pane before the browser follows the section link. */
 document.addEventListener('click',function(e){
   var format=e.target.closest('[data-format]');

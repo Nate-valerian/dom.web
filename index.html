@@ -63,7 +63,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?20261102-mobile-links">
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
@@ -97,21 +97,21 @@
     <a href="https://max.ru/u/f9LHodD0cOIaU3V8p18x9sSpVsu9m9RGQXyTj1CY4xGecTylFdPNueoshng" target="_blank" rel="noopener" class="nav-btn">Записаться</a>
   </div>
 
-<button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Меню">
+<button class="mob-menu-btn" onclick="setMobileMenu(true)" aria-label="Меню">
   <span></span><span></span><span></span>
 </button>
 
 <div class="mob-menu" id="mobMenu">
-  <button class="mob-menu-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
-  <a href="#hero" onclick="document.getElementById('mobMenu').classList.remove('open')">Главная</a>
-  <a href="#chooser" onclick="document.getElementById('mobMenu').classList.remove('open')">Подобрать формат</a>
-  <a href="#programs" onclick="document.getElementById('mobMenu').classList.remove('open')">Программы</a>
-  <a href="#forwhom" onclick="document.getElementById('mobMenu').classList.remove('open')">Для кого</a>
-  <a href="#featured-media" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
-  <a href="#tea" onclick="document.getElementById('mobMenu').classList.remove('open')">Чай и подарки</a>
-  <a href="#rental" onclick="document.getElementById('mobMenu').classList.remove('open')">Аренда</a>
-  <a href="#corporate" onclick="document.getElementById('mobMenu').classList.remove('open')">Корпоративам</a>
-  <a href="#contact" onclick="document.getElementById('mobMenu').classList.remove('open')" style="color:#c9a86c">Записаться</a>
+  <button class="mob-menu-close" onclick="setMobileMenu(false)">✕</button>
+  <a href="#hero" onclick="setMobileMenu(false,false)">Главная</a>
+  <a href="#chooser" onclick="setMobileMenu(false,false)">Подобрать формат</a>
+  <a href="#programs" onclick="setMobileMenu(false,false)">Программы</a>
+  <a href="#forwhom" onclick="setMobileMenu(false,false)">Для кого</a>
+  <a href="#featured-media" onclick="setMobileMenu(false,false)">Фото и видео</a>
+  <a href="#tea" onclick="setMobileMenu(false,false)">Чай и подарки</a>
+  <a href="#rental" onclick="setMobileMenu(false,false)">Аренда</a>
+  <a href="#corporate" onclick="setMobileMenu(false,false)">Корпоративам</a>
+  <a href="#contact" onclick="setMobileMenu(false,false)" style="color:#c9a86c">Записаться</a>
 </div>
 
 </nav>
@@ -1368,6 +1368,6 @@
 
 </div>
 
-<script src="main.js?v=20260817-contact-links" defer></script>
+<script src="main.js?v=20261102-mobile-links" defer></script>
 </body>
 </html>

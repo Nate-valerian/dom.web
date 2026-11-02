@@ -6,6 +6,7 @@
   --line:rgba(201,168,108,.14);--r:28px;--r-lg:32px;
 }
 html{scroll-behavior:smooth;scroll-padding-top:128px}
+html.menu-open,html.menu-open body{overflow:hidden}
 body{font-family:'Cormorant Garamond',Georgia,serif;background:#07070d;color:var(--white);overflow-x:hidden}
 
 /* ── CURSOR ── */
@@ -1119,6 +1120,7 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
 /* Mobile hamburger menu */
 .mob-menu-btn{
   display:none;
+  min-width:44px;min-height:44px;
   background:none;border:1px solid rgba(201,168,108,.3);
   border-radius:8px;padding:8px 12px;cursor:pointer;
   flex-direction:column;gap:4px;align-items:center;justify-content:center;
@@ -1128,27 +1130,31 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   transition:transform .3s,opacity .3s;
 }
 .mob-menu{
-  display:none;position:fixed;inset:0;z-index:9990;
-  background:rgba(4,2,1,.98);
-  flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  padding:40px;
+  display:none;position:fixed;inset:0;z-index:10020;
+  background:var(--ink);
+  flex-direction:column;align-items:center;gap:4px;
+  padding:max(72px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));
+  overflow-y:auto;overscroll-behavior:contain;
 }
 .mob-menu.open{display:flex}
 .mob-menu a{
-  font-family:'Raleway',sans-serif;font-weight:200;font-size:16px;
-  letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(244,237,224,.6);text-decoration:none;
-  padding:14px 0;border-bottom:1px solid rgba(201,168,108,.1);
+  font-family:'Raleway',sans-serif;font-weight:400;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+  padding:14px 0;min-height:44px;flex-shrink:0;border-bottom:1px solid rgba(201,168,108,.2);
   width:100%;text-align:center;transition:color .3s;
 }
 .mob-menu a:hover{color:var(--gold)}
 .mob-menu-close{
-  position:absolute;top:24px;right:24px;
-  background:none;border:none;color:rgba(201,168,108,.6);
-  font-size:24px;cursor:pointer;padding:8px;
+  position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;
+  background:none;border:1px solid var(--gold-dim);border-radius:8px;color:var(--gold);
+  font-size:24px;cursor:pointer;padding:8px;min-width:44px;min-height:44px;
 }
-@media(max-width:768px){
+@media(max-width:960px){
   .mob-menu-btn{display:flex}
+}
+@media(hover:none), (pointer:coarse){
+  #cur,#cur2,#sparkle-canvas{display:none}
 }
 
 

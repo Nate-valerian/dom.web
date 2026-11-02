@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://domwomenspace.ru/assets/gallery/photo-05.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Титул Императора","description":"Ритуальная программа про статус, внимание и признание.","image":"https://domwomenspace.ru/assets/gallery/photo-05.webp","provider":{"@type":"LocalBusiness","name":"ДОМ · Женское пространство","url":"https://domwomenspace.ru"},"offers":{"@type":"Offer","price":"25000","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://domwomenspace.ru/programs/imperator.html"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../styles.css?20261102-mobile-links">
 <link rel="stylesheet" href="../programs.css">
 </head>
 <body class="pg-page">
@@ -47,21 +47,21 @@
     <a href="https://max.ru/u/f9LHodD0cOIaU3V8p18x9sSpVsu9m9RGQXyTj1CY4xGecTylFdPNueoshng" target="_blank" rel="noopener" class="nav-btn">Записаться</a>
   </div>
 
-  <button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Меню">
+  <button class="mob-menu-btn" onclick="setMobileMenu(true)" aria-label="Меню">
     <span></span><span></span><span></span>
   </button>
 
   <div class="mob-menu" id="mobMenu">
-    <button class="mob-menu-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
-    <a href="../index.html#hero" onclick="document.getElementById('mobMenu').classList.remove('open')">Главная</a>
-    <a href="../index.html#chooser" onclick="document.getElementById('mobMenu').classList.remove('open')">Подобрать формат</a>
-    <a href="../index.html#programs" onclick="document.getElementById('mobMenu').classList.remove('open')">Программы</a>
-    <a href="../index.html#forwhom" onclick="document.getElementById('mobMenu').classList.remove('open')">Для кого</a>
-    <a href="../index.html#featured-media" onclick="document.getElementById('mobMenu').classList.remove('open')">Фото и видео</a>
-    <a href="../index.html#tea" onclick="document.getElementById('mobMenu').classList.remove('open')">Чай и подарки</a>
-    <a href="../index.html#rental" onclick="document.getElementById('mobMenu').classList.remove('open')">Аренда</a>
-    <a href="../index.html#corporate" onclick="document.getElementById('mobMenu').classList.remove('open')">Корпоративам</a>
-    <a href="../index.html#contact" onclick="document.getElementById('mobMenu').classList.remove('open')" style="color:#c9a86c">Записаться</a>
+    <button class="mob-menu-close" onclick="setMobileMenu(false)">✕</button>
+    <a href="../index.html#hero" onclick="setMobileMenu(false,false)">Главная</a>
+    <a href="../index.html#chooser" onclick="setMobileMenu(false,false)">Подобрать формат</a>
+    <a href="../index.html#programs" onclick="setMobileMenu(false,false)">Программы</a>
+    <a href="../index.html#forwhom" onclick="setMobileMenu(false,false)">Для кого</a>
+    <a href="../index.html#featured-media" onclick="setMobileMenu(false,false)">Фото и видео</a>
+    <a href="../index.html#tea" onclick="setMobileMenu(false,false)">Чай и подарки</a>
+    <a href="../index.html#rental" onclick="setMobileMenu(false,false)">Аренда</a>
+    <a href="../index.html#corporate" onclick="setMobileMenu(false,false)">Корпоративам</a>
+    <a href="../index.html#contact" onclick="setMobileMenu(false,false)" style="color:#c9a86c">Записаться</a>
   </div>
 </nav>
 
@@ -134,7 +134,7 @@
   <div class="f-center" style="text-align:center;font-size:13px;color:var(--ash);font-weight:300">Женское пространство · Большая Молчановка 15/12<br>Мультимедийное пространство 5D · Москва</div>
   <div class="f-right" style="font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,108,.3)">© 2025 ДОМ · <a href="../index.html#legal" style="color:inherit">Политика конфиденциальности</a></div>
 </footer>
-<script src="../main.js?v=20260817-contact-links" defer></script>
+<script src="../main.js?v=20261102-mobile-links" defer></script>
 <script src="../programs-related.js" defer></script>
 </body>
 </html>
