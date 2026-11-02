@@ -1,0 +1,27 @@
+/* Couple and projection imagery for the immersive date program. */
+#acc-immersive-date.open .prog-acc-body{max-height:2400px}
+#acc-immersive-date .prog-acc-inner{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start}
+.date-card-media{margin:0;overflow:hidden;border:1px solid var(--gold-dim);border-radius:20px;background:var(--ink)}
+.date-card-media a{display:block}
+.date-card-media img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 62%}
+.date-card-media figcaption{padding:12px 16px;font-size:15px;line-height:1.5;color:var(--ash)}
+.date-card-copy .acc-actions{align-items:flex-start;margin-top:24px}
+.date-card-copy .acc-meta{justify-content:flex-start}
+.date-page .med-hero{grid-template-areas:"intro photo" "details photo";row-gap:16px}
+.date-hero-intro{grid-area:intro;align-self:end}
+.date-hero-details{grid-area:details;align-self:start}
+.date-page .med-hero-figure{grid-area:photo}
+.date-projections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:28px}
+.date-projection{overflow:hidden;border:1px solid var(--gold-dim);border-radius:22px;background:var(--ink)}
+.date-projection img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.date-projection figcaption{padding:14px 18px;font-size:16px;line-height:1.5;color:var(--ash)}
+.date-page .pg-related-card{min-height:108px;justify-content:center}
+.date-card-media a:focus-visible{outline:2px solid var(--gold2);outline-offset:-4px}
+@media(max-width:760px){
+  #acc-immersive-date .prog-acc-inner,.date-projections{grid-template-columns:1fr}
+  .date-card-media{width:100%;max-width:460px;justify-self:center}
+}
+@media(max-width:700px){
+  .date-page .med-hero{grid-template-areas:"intro" "photo" "details";row-gap:24px}
+  .date-page .med-lead{margin-bottom:0}
+}

@@ -8,7 +8,7 @@
     'lila':                           {title:'<em>Лила</em>',                  price:'15 000 ₽',    img:'photo-04.webp'},
     'lila-gruppovaya':                {title:'Лила <em>— групповая</em>',      price:'7 500 ₽',     img:'photo-11.webp'},
     'immersive-5d':                   {title:'Иммерсивная <em>5D</em>',        price:'по запросу',  img:'intro-montage-01-poster.webp'},
-    'immersive-date':                 {title:'Свидание <em>5D</em>',           price:'по запросу',  img:'photo-10.webp'},
+    'immersive-date':                 {title:'Свидание <em>5D</em>',           price:'по запросу',  image:'../assets/immersive-date/date-experience.webp'},
     'vajci-tujna':                    {title:'Вайци <em>& Туйна</em>',         price:'от 6 000 ₽',  img:'photo-06.webp'},
     'chajnaya-ceremoniya':            {title:'Чайная <em>церемония</em>',      price:'от 2 500 ₽',  img:'photo-07.webp'},
     'chajnaya-ceremoniya-dlya-dvoih': {title:'Чайная <em>для двоих</em>',      price:'20 000 ₽',    img:'photo-10.webp'},
@@ -59,8 +59,10 @@
     var html = '<div class="pg-related-head">Похожие программы</div><div class="pg-related-grid">';
     related.forEach(function(r){
       var altText = r.data.title.replace(/<[^>]+>/g, '');
+      var imageSrc = r.data.image || '../assets/gallery/' + r.data.img;
+      var imageHtml = section.getAttribute('data-images') === 'false' ? '' : '<img src="' + imageSrc + '" alt="' + altText + '" loading="lazy">';
       html += '<a class="pg-related-card" href="' + r.slug + '.html">' +
-        '<img src="../assets/gallery/' + r.data.img + '" alt="' + altText + '">' +
+        imageHtml +
         '<div class="pg-related-info">' +
           '<div class="pg-related-title">' + r.data.title + '</div>' +
           '<div class="pg-related-price">' + r.data.price + '</div>' +
