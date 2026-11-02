@@ -4,6 +4,14 @@ const CONTACT_LINKS = {
   whatsapp: 'https://wa.me/79850932711'
 };
 
+/* Select the destination pane before the browser follows the section link. */
+document.addEventListener('click',function(e){
+  var format=e.target.closest('[data-format]');
+  if(format)switchTab(format.getAttribute('data-format'));
+  var link=e.target.closest('a[href^="#acc-"]');
+  if(link&&link.hash===window.location.hash)openAccFromHash();
+});
+
 /* ── Clipboard + toast helpers (module-level; used by form AND by any a[data-msg]) ── */
 function copyToClipboard(text){
   if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);
@@ -176,11 +184,14 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 
 /* ── TABS ── */
 function switchTab(id,btn){
+  var pane=document.getElementById('pane-'+id);
+  btn=btn||document.querySelector('.format-tab[data-format="'+id+'"]');
+  if(!pane||!btn)return;
   document.querySelectorAll('.format-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
   document.querySelectorAll('.format-pane').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   btn.setAttribute('aria-selected','true');
-  document.getElementById('pane-'+id).classList.add('active');
+  pane.classList.add('active');
 }
 
 /* ══════════════════════════════════
@@ -377,17 +388,9 @@ function openAccFromHash(){
   var pane = item.closest('.format-pane');
   if(pane){
     var paneSuffix = pane.id.replace('pane-','');
-    document.querySelectorAll('.format-pane').forEach(function(p){p.classList.remove('active');});
-    document.querySelectorAll('.format-tab').forEach(function(t){t.classList.remove('active');});
-    pane.classList.add('active');
-    document.querySelectorAll('.format-tab').forEach(function(t){
-      if((t.getAttribute('onclick')||'').indexOf("'"+paneSuffix+"'")>=0) t.classList.add('active');
-    });
-    pane.querySelectorAll('.prog-acc-item.open').forEach(function(el){
-      if(el !== item) el.classList.remove('open');
-    });
+    switchTab(paneSuffix);
   }
-  item.classList.add('open');
+  if(!item.classList.contains('open'))toggleAcc(item.id.slice(4));
   setTimeout(function(){item.scrollIntoView({behavior:'smooth', block:'start'});}, 120);
 }
 window.addEventListener('DOMContentLoaded', openAccFromHash);
