@@ -64,6 +64,7 @@
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?20261102-map-location">
+<link rel="stylesheet" href="new-year.css?v=20261102">
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
@@ -79,7 +80,7 @@
 <nav id="nav">
   <a href="#hero" class="logo-slot ls-nav" aria-label="ДОМ"><video class="logo-video" src="assets/brand/logo.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/brand/logo.webp" oncanplay="this.closest('.logo-slot').classList.add('logo-loaded')" onerror="this.closest('.logo-slot').classList.add('logo-missing')"></video><span class="logo-fallback">ДОМ</span></a>
   <ul class="nav-links">
-    <li><a href="#hero">Главная</a></li>
+    <li><a href="#new-year">Новый год</a></li>
     <li><a href="#chooser">Подобрать</a></li>
     <li><a href="#programs">Программы</a></li>
     <li><a href="#featured-media">Фото и видео</a></li>
@@ -104,6 +105,7 @@
 <div class="mob-menu" id="mobMenu">
   <button class="mob-menu-close" onclick="setMobileMenu(false)">✕</button>
   <a href="#hero" onclick="setMobileMenu(false,false)">Главная</a>
+  <a href="#new-year" onclick="setMobileMenu(false,false)">Новый год</a>
   <a href="#chooser" onclick="setMobileMenu(false,false)">Подобрать формат</a>
   <a href="#programs" onclick="setMobileMenu(false,false)">Программы</a>
   <a href="#forwhom" onclick="setMobileMenu(false,false)">Для кого</a>
@@ -143,6 +145,27 @@
     <video class="hero-video-card" src="assets/gallery/hero-card-04.mp4" poster="assets/gallery/hero-card-04-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- NEW YEAR -->
+<section class="ny-feature" id="new-year" aria-labelledby="new-year-title">
+  <div class="ny-feature-inner">
+    <div class="ny-feature-copy">
+      <p class="ny-eyebrow">Новый год в ДОМе · Иммерсивная AI-сказка</p>
+      <h2 class="ny-title" id="new-year-title">Берегиня <em>и 7 хранителей живого леса</em></h2>
+      <p class="ny-lead">Иммерсивная AI-сказка, в которой волшебство оживает вокруг вас.</p>
+      <p class="ny-copy">Сказка, которую не просто смотрят. Её проживают. Необычный формат для семейного отдыха, особенного праздника или камерной встречи с близкими.</p>
+      <div class="ny-tags"><span>Проекции на 270°</span><span>Объёмный звук</span><span>Русское чаепитие</span></div>
+      <div class="ny-actions">
+        <a href="programs/bereginya.html" class="btn-p">О сказке и форматах</a>
+        <a href="programs/bereginya.html#ny-booking" class="btn-g">Узнать даты</a>
+      </div>
+    </div>
+    <figure class="ny-feature-photo">
+      <img src="assets/new-year/forest-table-02.jpg" width="884" height="1920" loading="lazy" alt="Берегиня и хранители живого леса в панорамной проекции вокруг праздничного стола в ДОМе">
+      <figcaption>Волшебный лес, который становится частью вашего праздника</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- MANIFESTO -->
@@ -204,7 +227,7 @@
   <div class="format-tabs" style="margin-top:44px">
     <button class="format-tab active" type="button" data-format="ind"><span class="tc">7</span>Индивидуальные</button>
     <button class="format-tab" type="button" data-format="pair"><span class="tc">4</span>Парные</button>
-    <button class="format-tab" type="button" data-format="grp"><span class="tc">7</span>Групповые</button>
+    <button class="format-tab" type="button" data-format="grp"><span class="tc">11</span>Групповые</button>
   </div>
 
   <!-- INDIVIDUAL -->
@@ -523,7 +546,31 @@
   <div class="fb-icon"><svg viewBox="0 0 32 32" fill="none" stroke="#c9a86c" stroke-width="1"><circle cx="8" cy="12" r="4"/><circle cx="16" cy="9" r="4"/><circle cx="24" cy="12" r="4"/><path d="M1 27Q1 21 8 21" stroke-linecap="round"/><path d="M8 21Q12 18.5 16 18.5Q20 18.5 24 21" stroke-linecap="round"/><path d="M31 27Q31 21 24 21" stroke-linecap="round"/></svg></div>
   <div class="fb-text"><div class="fb-title">Групповой <em>опыт</em></div><p class="fb-desc">Программы для команд, компаний и сообществ. Сплочение, трансформация и общая энергия.</p></div>
   <div class="fb-badge">3–30 человек</div>
-</div><div class="subcat-acc">Ритуалы и трансформации</div><div class="prog-accordion"><div class="prog-acc-item" id="acc-lila-grp">
+</div>
+<div class="subcat-acc">Новый год в ДОМе</div>
+<div class="prog-accordion">
+  <div class="prog-acc-item featured" id="acc-bereginya">
+    <div class="prog-acc-header" onclick="toggleAcc('bereginya')">
+      <div class="prog-acc-left">
+        <div class="prog-acc-left-top"><span class="prog-acc-badge acc-badge-fam">✦ Для семьи и близких</span><span class="prog-acc-name"><em>Берегиня</em> и 7 хранителей живого леса</span></div>
+        <span class="prog-acc-sub">Иммерсивная AI-сказка · Новый год</span>
+        <span class="prog-acc-price">7 000 ₽ / взрослый · VIP 27 000 ₽</span>
+      </div>
+      <div class="prog-acc-right"><span class="prog-acc-arrow">▾</span></div>
+    </div>
+    <div class="prog-acc-body">
+      <div class="prog-acc-inner">
+        <div><p class="acc-desc">Иммерсивная AI-сказка, в которой волшебство оживает вокруг вас. Панорамные проекции на 270°, объёмное звучание и русское чаепитие — путешествие в мир славянских образов и природной магии.</p><p class="acc-for">Для семейного отдыха, особенного праздника или камерной встречи с близкими. Есть детские форматы.</p></div>
+        <div class="acc-actions">
+          <div class="acc-meta"><span class="acc-meta-pill">Проекции на 270°</span><span class="acc-meta-pill">Для взрослых и детей</span></div>
+          <a href="programs/bereginya.html" class="acc-btn-p">Подробнее и форматы</a>
+          <a href="programs/bereginya.html#ny-booking" class="acc-btn-g">Узнать даты</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="subcat-acc">Ритуалы и трансформации</div><div class="prog-accordion"><div class="prog-acc-item" id="acc-lila-grp">
   <div class="prog-acc-header" onclick="toggleAcc('lila-grp')">
     <div class="prog-acc-left">
       <div class="prog-acc-left-top"><span class="prog-acc-badge acc-badge-u">✦ Для всех</span><span class="prog-acc-name"><em>Лила</em> — групповая</span></div>
