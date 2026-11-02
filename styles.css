@@ -1199,7 +1199,9 @@ footer{background:rgba(5,3,1,0.88);padding:40px 56px;display:flex;justify-conten
   .tea-grid{grid-template-columns:1fr}
   .tea-card-full{grid-column:span 1}
   .signature-strip{flex-direction:column;gap:20px;padding:28px 24px}
-  .map-wrap{height:320px}
+  .map-wrap{height:auto}
+  .map-wrap iframe{height:320px}
+  .map-overlay{position:static;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--ink);backdrop-filter:none}
 }
 
 .ck-banner{position:fixed;bottom:18px;left:50%;right:auto;width:min(760px,calc(100% - 36px));z-index:99998;
